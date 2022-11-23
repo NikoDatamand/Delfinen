@@ -50,7 +50,7 @@ public class FileHandler{
             ObjectOutputStream o = new ObjectOutputStream(f);
             if(!database.getMembers().isEmpty()){
                 while (index < database.getSize()){
-                    o.writeObjetct(database.get(index));
+                    o.writeObject(database.get(index));
                     index++;
                 }
             }
