@@ -2,13 +2,14 @@ import java.io.*;
 
 public class FileHandler{
     /*
-    private Medlem medlem = new Medlem();
+
     private Database database = new Database();
+    private ArrayList<Medlem> medlemsDatabase;
     private int numberOfMembers = 0;
     private int index = 0;
     
-    public FileHandler(Medlem medlem){
-        this.medlem = medlem;
+    public FileHandler(ArrayList<Medlem> medlemsDatabase){
+        this.medlemsDatabase = medlemsDatabase;
     }
 
     public void attemptCreateFile()throws IOException{

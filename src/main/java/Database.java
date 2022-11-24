@@ -8,4 +8,8 @@ public class Database {
     public ArrayList<Medlem> getMedlemsDatabase() {
         return medlemsDatabase;
     }
+
+    public void addMedlemToDatabase(Medlem medlem){
+        medlemsDatabase.add(medlem);
+    }
 }
