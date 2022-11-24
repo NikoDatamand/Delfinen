@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner sc = new Scanner(System.in);
-    // Controller controller = new Controller; // controller her, ikk'?
+    Controller controller = new Controller();
 
     public void loadUserInterface() {
 
@@ -19,7 +19,7 @@ public class UserInterface {
     private void Intro() {
         System.out.println("""
                 
-                Velkommen til svømmeklubben 'Delfinen'  
+                Velkommen til svømmeklubben 'Delfinen'
                 
                 1. Opret medlem
                 9. Afslut
@@ -29,7 +29,7 @@ public class UserInterface {
     private void Menu() {
         switch (sc.nextInt()) {
             case 1:
-                //valg 1//
+                createMedlem();
                 break;
             case 2:
                 //valg 2//
@@ -46,11 +46,46 @@ public class UserInterface {
             case 9:
                 System.exit(0);
                 break;
-
         }
     }
 
     private void createMedlem() {
+        sc.nextLine();
+        System.out.println("Hvad er det fulde navn på medlemmet der skal oprettes?");
+        String navn = sc.nextLine();
+        System.out.println("Hvad er medlemmets alder?");
+        int alder = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
+        char køn = kønToChar(sc.nextLine());
+        System.out.println("Hvilket år meldte medlemmet sig ind?");
+        int indmeldelsesÅr = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Hvilken måned meldte medlemmet sig ind (1-12)?");
+        int indmeldelsesMåned = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Hvilken dag meldte medlemmet sig ind (1-31)?");
+        int indmeldelsesDag = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Er der tale om et aktivt eller passivt medlemskab?");
+        String medlemskabsType = sc.nextLine();
+        System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
+        String aktivitetsNiveau = sc.nextLine();
 
+        Medlem nytMedlem = new Medlem(navn, alder, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, medlemskabsType, aktivitetsNiveau);
+
+        controller.addMedlemToDatabase(nytMedlem);
+    }
+
+    private char kønToChar(String køn){
+        char kønChar;
+        if (køn.equalsIgnoreCase("mand")){
+            kønChar = 'm';
+        } else if (køn.equalsIgnoreCase("kvinde")){
+            kønChar = 'f';
+        } else {
+            kønChar = 'n';
+        }
+        return kønChar;
     }
 }
