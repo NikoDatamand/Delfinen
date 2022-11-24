@@ -1,15 +1,18 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class FileHandler{
-    /*
+    
 
     private Database database = new Database();
     private ArrayList<Medlem> medlemsDatabase;
     private int numberOfMembers = 0;
     private int index = 0;
     
-    public FileHandler(ArrayList<Medlem> medlemsDatabase){
+    public FileHandler(ArrayList<Medlem> medlemsDatabase) {
         this.medlemsDatabase = medlemsDatabase;
+       /* 
+        }*/
     }
 
     public void attemptCreateFile()throws IOException{
@@ -22,7 +25,7 @@ public class FileHandler{
             System.out.println("");
         }
     }
-    
+    /*
     public void readFromFile() throws Exception{    
         try{
             FileInputStream fi = new FileInputStream("medlemmer.txt");
@@ -32,7 +35,7 @@ public class FileHandler{
             while (shouldContinue){
                 if(fi.available() != 0){
                     obj = (Medlem) oi.readObject();
-                    database.addMemberToDatabase((Medlem) obj);
+                    database.addMedlemToDatabase((Medlem) obj);
                     numberOfMembers++;
                 } else {
                    shouldContinue = false;
@@ -44,15 +47,15 @@ public class FileHandler{
             
         }
     }
-
-    public void writeToFile(){
+*/
+    public void writeToFile() throws Exception{
         index = 0;
         try{
             FileOutputStream f = new FileOutputStream("medlemmer.txt");
             ObjectOutputStream o = new ObjectOutputStream(f);
-            if(!database.getMembers().isEmpty()){
-                while (index < database.getSize()){
-                    o.writeObject(database.get(index));
+            if(!database.getMedlemsDatabase().isEmpty()){
+                while (index < database.getMedlemsDatabase().size()){
+                    o.writeObject(database.getMedlemsDatabase().get(index));
                     index++;
                 }
             }
@@ -62,14 +65,5 @@ public class FileHandler{
             ex.printStackTrace();
         }
     }
-     */
+     
 }
-
-
-
-
-
-
-
-
-

@@ -8,7 +8,7 @@ public class Database {
     public ArrayList<Medlem> getMedlemsDatabase() {
         return medlemsDatabase;
     }
-
+    //ADD
     public void addMedlemToDatabase(Medlem medlem){
         medlemsDatabase.add(medlem);
     }
