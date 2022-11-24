@@ -8,11 +8,26 @@ public class UserInterface {
 
         boolean isRunning = true;
 
-        Intro();
-        visMenu();
-
         while (isRunning) {
-            switch () {
+
+        Intro();
+        Menu();
+
+        }
+    }
+
+    private void Intro() {
+        System.out.println("""
+                
+                Velkommen til svømmeklubben 'Delfinen'  
+                
+                1. Opret medlem
+                9. Afslut
+                """);
+    }
+
+    private void Menu() {
+        switch (sc.nextInt()) {
             case 1:
                 //valg 1//
                 break;
@@ -29,25 +44,13 @@ public class UserInterface {
                 //valg 5//
                 break;
             case 9:
-                //valg 9//
+                System.exit(0);
                 break;
 
-            }
         }
+    }
 
-        private void Intro() {
-            System.out.println("Velkommen til svømmeklubben Delfinen");
-        }
+    private void createMedlem() {
 
-        public void visMenu() {
-            System.out.println("""
-                    1.
-                    2.
-                    3.
-                    4.
-                    5.
-                    9.
-                    """);
-        }
     }
 }

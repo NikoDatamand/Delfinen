@@ -1,6 +1,7 @@
 import java.io.*;
 
 public class FileHandler{
+    /*
     private Medlem medlem = new Medlem();
     private Database database = new Database();
     private int numberOfMembers = 0;
@@ -60,6 +61,7 @@ public class FileHandler{
             ex.printStackTrace();
         }
     }
+     */
 }
 
 
