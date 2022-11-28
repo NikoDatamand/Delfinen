@@ -32,7 +32,7 @@ public class Database {
         return foundMedlemmer;
     }
 
-    //Edit
+    //Update
     public void editMedlem (Medlem medlemToBeEdited, Medlem newMedlemInfo) {
       medlemToBeEdited.setNavn(newMedlemInfo.getNavn());
       medlemToBeEdited.setAlder(newMedlemInfo.getAlder());
@@ -43,6 +43,15 @@ public class Database {
       medlemToBeEdited.setTypeMedlemskab(newMedlemInfo.getTypeMedlemskab());
       medlemToBeEdited.setAktivitetsniveauMedlemskab(newMedlemInfo.getAktivitetsniveauMedlemskab());
 
+    }
+
+    //Delete
+    public void deleteMedlem (String medlemToBeDelted) {
+        for (int i = 0; i < medlemsDatabase.size(); i++) {
+            if (medlemsDatabase.get(i).getNavn().contains(medlemToBeDelted)) {
+                medlemsDatabase.remove(medlemsDatabase.get(i));
+            }
+        }
     }
 
     //GET

@@ -39,4 +39,13 @@ public class Controller {
         medlemsDatabase.editMedlem(medlemToBeEdited, newMedlemInfo);
     }
 
+    public void deleteMedlem (String medlemToBeDelted) {
+        medlemsDatabase.deleteMedlem(medlemToBeDelted);
+        try {
+            fileHandler.writeToFile(medlemsDatabase.getMedlemsDatabase());
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }
+
 }

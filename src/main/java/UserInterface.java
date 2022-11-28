@@ -28,6 +28,7 @@ public class UserInterface {
                 2. Vis alle medlemmer
                 3. Søg efter medlem
                 4. Opdatér medlemsoplysninger
+                5. Slet medlem
                 9. Afslut
                 """);
     }
@@ -48,7 +49,7 @@ public class UserInterface {
                 editMedlem();
                 break;
             case 5:
-                //valg 5//
+                deleteMedlem();
                 break;
             case 9:
                 System.exit(0);
@@ -128,7 +129,24 @@ public class UserInterface {
         }
     }
 
-    //Helping methods
+    private void deleteMedlem() {
+        sc.nextLine();
+        System.out.println("Hvad er navnet på medlemmet der skal slettes");
+        ArrayList<Medlem> foundMedlemmer = controller.searchMedlemByName(sc.nextLine());
+
+        if (!foundMedlemmer.isEmpty()) {
+            System.out.println("Tast nummeret på medlemmet du vil redigere: ");
+            int searchNumber = sc.nextInt();
+            sc.nextLine();
+            Medlem medlemToBeDeleted = foundMedlemmer.get(searchNumber - 1);
+            controller.deleteMedlem(medlemToBeDeleted.getNavn());
+            System.out.println("Medlemmet er nu slettet." + ".\n");
+        } else {
+            System.out.println("Et medlem med det navn kunne ikke findes.");
+        }
+    }
+
+            //Helping methods
     private char kønToChar(String køn) {
         char kønChar;
         if (køn.equalsIgnoreCase("mand")) {
