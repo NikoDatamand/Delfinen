@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FileHandler{
@@ -18,8 +19,8 @@ public class FileHandler{
             System.out.println("");
         }
     }
-    /*
-    public void readFromFile() throws Exception{    
+
+    public void readFromFile(ArrayList<Medlem> medlemsDatabase) throws Exception{
         try{
             FileInputStream fi = new FileInputStream("medlemmer.txt");
             ObjectInputStream oi = new ObjectInputStream(fi);
@@ -28,8 +29,8 @@ public class FileHandler{
             while (shouldContinue){
                 if(fi.available() != 0){
                     obj = (Medlem) oi.readObject();
-                    database.addMedlemToDatabase((Medlem) obj);
-                    numberOfMembers++;
+                    medlemsDatabase.add((Medlem) obj);
+                    index++;
                 } else {
                    shouldContinue = false;
                 }
@@ -40,7 +41,7 @@ public class FileHandler{
             
         }
     }
-*/
+
     public void writeToFile(ArrayList<Medlem> database) throws Exception{
         index = 0;
         try{

@@ -24,6 +24,7 @@ public class UserInterface {
                 Velkommen til svømmeklubben 'Delfinen'
                                 
                 1. Opret medlem
+                2. Vis alle medlemmer
                 9. Afslut
                 """);
     }
@@ -34,7 +35,7 @@ public class UserInterface {
                 createMedlem();
                 break;
             case 2:
-                //valg 2//
+                controller.showMedlemmer();
                 break;
             case 3:
                 //valg 3//
