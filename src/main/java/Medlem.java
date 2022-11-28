@@ -88,6 +88,18 @@ public class Medlem implements Serializable {
         return køn;
     }
 
+    public int getIndmeldelsesÅr() {
+        return indmeldelsesÅr;
+    }
+
+    public int getIndmeldelsesMåned() {
+        return indmeldelsesMåned;
+    }
+
+    public int getIndmeldelsesDag() {
+        return indmeldelsesDag;
+    }
+
     public String getIndmeldelsesDato() {
         LocalDateTime myDateObj = LocalDateTime.parse(indmeldelsesÅr + "-" + indmeldelsesmånedFormattingHelper() + "-" + indmeldelsesdagFormattingHelper() + "T00:00:00");
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");

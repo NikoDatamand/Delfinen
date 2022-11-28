@@ -38,7 +38,7 @@ public class FileHandler{
             fi.close();
             oi.close();
         }catch (Exception e){
-            
+            System.out.println("Error");
         }
     }
 

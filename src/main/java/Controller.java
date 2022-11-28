@@ -9,6 +9,7 @@ public class Controller {
     //Constructor
     public Controller() {
         try {
+            fileHandler.attemptCreateFile();
             fileHandler.readFromFile(medlemsDatabase.getMedlemsDatabase());
         } catch (Exception e){
             System.out.println("Error");
@@ -17,7 +18,6 @@ public class Controller {
 
     public void addMedlemToDatabase(Medlem medlem){
         try{
-            fileHandler.attemptCreateFile();
             medlemsDatabase.addMedlemToDatabase(medlem);
             fileHandler.writeToFile(medlemsDatabase.getMedlemsDatabase());
         } catch (Exception e){
@@ -29,8 +29,14 @@ public class Controller {
         medlemsDatabase.showMedlemmer();
     }
 
-    public void searchMedlemByName(String medlemName){
-        medlemsDatabase.searchMedlem(medlemName);
+    public ArrayList<Medlem> searchMedlemByName(String medlemName){
+        ArrayList<Medlem> foundMedlemmer = new ArrayList<>();
+        foundMedlemmer = medlemsDatabase.searchMedlem(medlemName);
+        return foundMedlemmer;
+    }
+
+    public void editMedlem (Medlem medlemToBeEdited, Medlem newMedlemInfo) {
+        medlemsDatabase.editMedlem(medlemToBeEdited, newMedlemInfo);
     }
 
 }

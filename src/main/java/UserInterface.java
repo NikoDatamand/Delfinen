@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -26,6 +27,7 @@ public class UserInterface {
                 1. Opret medlem
                 2. Vis alle medlemmer
                 3. Søg efter medlem
+                4. Opdatér medlemsoplysninger
                 9. Afslut
                 """);
     }
@@ -43,7 +45,7 @@ public class UserInterface {
                 controller.searchMedlemByName(sc.next());
                 break;
             case 4:
-                //valg 4//
+                editMedlem();
                 break;
             case 5:
                 //valg 5//
@@ -81,6 +83,49 @@ public class UserInterface {
         controller.addMedlemToDatabase(nytMedlem);
 
         System.out.println("Medlemmet er nu oprettet i databasen");
+    }
+
+    private void editMedlem() {
+        sc.nextLine();
+        System.out.println("Hvad er navnet på medlemmet der skal opdateres");
+        ArrayList<Medlem> foundMedlemmer = controller.searchMedlemByName(sc.nextLine());
+
+        if (!foundMedlemmer.isEmpty()) {
+            System.out.println("Tast nummeret på medlemmet du vil redigere: ");
+            int searchNumber = sc.nextInt();
+            sc.nextLine();
+            Medlem medlemToBeEdited = foundMedlemmer.get(searchNumber - 1);
+
+            System.out.println("Indtast nye oplysninger, ellers tast 'enter': " + '\n');
+
+            System.out.println("Hvad er det fulde navn på medlemmet?");
+            String navn = sc.nextLine();
+            System.out.println("Hvad er medlemmets alder?");
+            int alder = readInteger(1);
+            sc.nextLine();
+            System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
+            char køn = kønToChar(sc.nextLine());
+            System.out.println("Hvilket år meldte medlemmet sig ind?");
+            int indmeldelsesÅr = readInteger(2);
+            sc.nextLine();
+            System.out.println("Hvilken måned meldte medlemmet sig ind (1-12)?");
+            int indmeldelsesMåned = readInteger(3);
+            sc.nextLine();
+            System.out.println("Hvilken dag meldte medlemmet sig ind (1-31)?");
+            int indmeldelsesDag = readInteger(4);
+            sc.nextLine();
+            System.out.println("Er der tale om et aktivt eller passivt medlemskab?");
+            String medlemskabsType = sc.nextLine();
+            System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
+            String aktivitetsNiveau = sc.nextLine();
+
+            Medlem newMedlemInfo = new Medlem(navn, alder, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, medlemskabsType, aktivitetsNiveau);
+            controller.editMedlem(medlemToBeEdited, newMedlemInfo);
+
+            System.out.println("Medlemmet er nu opdateret i databasen");
+        } else {
+            System.out.println("Der findes ingen medlemmer under det navn" + ".\n");
+        }
     }
 
     //Helping methods
