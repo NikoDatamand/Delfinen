@@ -33,17 +33,53 @@ public class Database {
     }
 
     //Update
-    public void editMedlem (Medlem medlemToBeEdited, Medlem newMedlemInfo) {
-      medlemToBeEdited.setNavn(newMedlemInfo.getNavn());
-      medlemToBeEdited.setAlder(newMedlemInfo.getAlder());
-      medlemToBeEdited.setKøn(newMedlemInfo.getKøn());
-      medlemToBeEdited.setIndmeldelsesÅr(newMedlemInfo.getIndmeldelsesÅr());
-      medlemToBeEdited.setIndmeldelsesMåned(newMedlemInfo.getIndmeldelsesMåned());
-      medlemToBeEdited.setIndmeldelsesDag(newMedlemInfo.getIndmeldelsesDag());
-      medlemToBeEdited.setTypeMedlemskab(newMedlemInfo.getTypeMedlemskab());
-      medlemToBeEdited.setAktivitetsniveauMedlemskab(newMedlemInfo.getAktivitetsniveauMedlemskab());
+   
+      public void editMedlem (Medlem medlemToBeEdited, Medlem newMedlemInfo) {
+        String name = newMedlemInfo.getNavn();
+        if(!name.isEmpty()){
+            medlemToBeEdited.setNavn(name);
+        }
+        
+        String alder = String.valueOf(newMedlemInfo.getAlder());
+        if(!alder.isEmpty()){
+            Integer alderInt = Integer.parseInt(alder);
+            medlemToBeEdited.setAlder(alderInt);
+        }
+        
+        String køn = String.valueOf(newMedlemInfo.getKøn());
+        if(!køn.isEmpty()){
+            char kønChar = køn.charAt(0);
+            medlemToBeEdited.setKøn(kønChar);
+        }
+
+        String indmeldelsesÅr = String.valueOf(newMedlemInfo.getIndmeldelsesÅr());
+        if(!indmeldelsesÅr.isEmpty()){
+            Integer indmeldelseÅrInt = Integer.parseInt(indmeldelsesÅr);
+            medlemToBeEdited.setIndmeldelsesÅr(indmeldelseÅrInt);
+        }
+
+        String indmeldelsesMåned = String.valueOf(newMedlemInfo.getIndmeldelsesMåned());
+        if(!indmeldelsesMåned.isEmpty()){
+            Integer indmeldelseMånedInt = Integer.parseInt(indmeldelsesMåned);
+            medlemToBeEdited.setIndmeldelsesMåned(indmeldelseMånedInt);
+        }
+
+        String indmeldelsesDag = String.valueOf(newMedlemInfo.getIndmeldelsesDag());
+        if(!indmeldelsesDag.isEmpty()){
+            Integer indmeldelsesDagInt = Integer.parseInt(indmeldelsesDag);
+            medlemToBeEdited.setIndmeldelsesDag(indmeldelsesDagInt);
+        }
+        
+        if(!newMedlemInfo.getTypeMedlemskab().isEmpty()){
+            medlemToBeEdited.setTypeMedlemskab(newMedlemInfo.getTypeMedlemskab());
+        }
+        
+        if(!newMedlemInfo.getAktivitetsniveauMedlemskab().isEmpty()){
+            medlemToBeEdited.setAktivitetsniveauMedlemskab(newMedlemInfo.getAktivitetsniveauMedlemskab());
+        }
 
     }
+    
 
     //Delete
     public void deleteMedlem (String medlemToBeDelted) {
