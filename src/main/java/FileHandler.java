@@ -3,16 +3,9 @@ import java.util.ArrayList;
 
 public class FileHandler{
     
-
-    private Database database = new Database();
-    private ArrayList<Medlem> medlemsDatabase;
-    private int numberOfMembers = 0;
     private int index = 0;
     
-    public FileHandler(ArrayList<Medlem> medlemsDatabase) {
-        this.medlemsDatabase = medlemsDatabase;
-       /* 
-        }*/
+    public FileHandler() {
     }
 
     public void attemptCreateFile()throws IOException{
@@ -48,14 +41,14 @@ public class FileHandler{
         }
     }
 */
-    public void writeToFile() throws Exception{
+    public void writeToFile(ArrayList<Medlem> database) throws Exception{
         index = 0;
         try{
             FileOutputStream f = new FileOutputStream("medlemmer.txt");
             ObjectOutputStream o = new ObjectOutputStream(f);
-            if(!database.getMedlemsDatabase().isEmpty()){
-                while (index < database.getMedlemsDatabase().size()){
-                    o.writeObject(database.getMedlemsDatabase().get(index));
+            if(!database.isEmpty()){
+                while (index < database.size()){
+                    o.writeObject(database.get(index));
                     index++;
                 }
             }

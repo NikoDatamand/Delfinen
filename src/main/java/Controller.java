@@ -4,7 +4,7 @@ import java.io.*;
 public class Controller {
 
     Database medlemsDatabase = new Database();
-    FileHandler fileHandler = new FileHandler(medlemsDatabase.getMedlemsDatabase());
+    FileHandler fileHandler = new FileHandler();
 
     //Constructor
     public Controller() {
@@ -13,16 +13,13 @@ public class Controller {
 
     public void addMedlemToDatabase(Medlem medlem){
         try{
-           fileHandler.attemptCreateFile();
+            fileHandler.attemptCreateFile();
+            medlemsDatabase.addMedlemToDatabase(medlem);
+            fileHandler.writeToFile(medlemsDatabase.getMedlemsDatabase());
         }
-        catch (IOException e){
+        catch (Exception e){
             System.out.println("Error");
         }
-        
-        medlemsDatabase.addMedlemToDatabase(medlem);
     }
 
-    /*public ArrayList<Medlem> addMedlemToDatabase(){
-        return medlemsDatabase.getMedlemsDatabase();
-    } */
 }

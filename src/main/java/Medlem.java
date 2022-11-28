@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Medlem {
+public class Medlem implements Serializable {
 
     private String navn;
     private int alder;
