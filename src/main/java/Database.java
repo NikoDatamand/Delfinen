@@ -39,11 +39,9 @@ public class Database {
         if(!name.isEmpty()){
             medlemToBeEdited.setNavn(name);
         }
-        
-        String alder = String.valueOf(newMedlemInfo.getAlder());
-        if(!alder.isEmpty()){
-            Integer alderInt = Integer.parseInt(alder);
-            medlemToBeEdited.setAlder(alderInt);
+
+        if(newMedlemInfo.getAlder() != 9999) {
+            medlemToBeEdited.setAlder(newMedlemInfo.getAlder());
         }
         
         String køn = String.valueOf(newMedlemInfo.getKøn());
@@ -52,24 +50,18 @@ public class Database {
             medlemToBeEdited.setKøn(kønChar);
         }
 
-        String indmeldelsesÅr = String.valueOf(newMedlemInfo.getIndmeldelsesÅr());
-        if(!indmeldelsesÅr.isEmpty()){
-            Integer indmeldelseÅrInt = Integer.parseInt(indmeldelsesÅr);
-            medlemToBeEdited.setIndmeldelsesÅr(indmeldelseÅrInt);
+        if(newMedlemInfo.getIndmeldelsesÅr() != 9999){
+            medlemToBeEdited.setIndmeldelsesÅr(newMedlemInfo.getIndmeldelsesÅr());
         }
 
-        String indmeldelsesMåned = String.valueOf(newMedlemInfo.getIndmeldelsesMåned());
-        if(!indmeldelsesMåned.isEmpty()){
-            Integer indmeldelseMånedInt = Integer.parseInt(indmeldelsesMåned);
-            medlemToBeEdited.setIndmeldelsesMåned(indmeldelseMånedInt);
+        if(newMedlemInfo.getIndmeldelsesMåned() != 9999){
+            medlemToBeEdited.setIndmeldelsesMåned(newMedlemInfo.getIndmeldelsesMåned());
         }
 
-        String indmeldelsesDag = String.valueOf(newMedlemInfo.getIndmeldelsesDag());
-        if(!indmeldelsesDag.isEmpty()){
-            Integer indmeldelsesDagInt = Integer.parseInt(indmeldelsesDag);
-            medlemToBeEdited.setIndmeldelsesDag(indmeldelsesDagInt);
+        if(newMedlemInfo.getIndmeldelsesDag() != 9999){
+            medlemToBeEdited.setIndmeldelsesDag(newMedlemInfo.getIndmeldelsesDag());
         }
-        
+
         if(!newMedlemInfo.getTypeMedlemskab().isEmpty()){
             medlemToBeEdited.setTypeMedlemskab(newMedlemInfo.getTypeMedlemskab());
         }

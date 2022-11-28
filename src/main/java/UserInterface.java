@@ -102,18 +102,18 @@ public class UserInterface {
             System.out.println("Hvad er det fulde navn på medlemmet?");
             String navn = sc.nextLine();
             System.out.println("Hvad er medlemmets alder?");
-            int alder = readInteger(1);
+            int alder = readEmptyInteger(1);
             sc.nextLine();
             System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
             char køn = kønToChar(sc.nextLine());
             System.out.println("Hvilket år meldte medlemmet sig ind?");
-            int indmeldelsesÅr = readInteger(2);
+            int indmeldelsesÅr = readEmptyInteger(2);
             sc.nextLine();
             System.out.println("Hvilken måned meldte medlemmet sig ind (1-12)?");
-            int indmeldelsesMåned = readInteger(3);
+            int indmeldelsesMåned = readEmptyInteger(3);
             sc.nextLine();
             System.out.println("Hvilken dag meldte medlemmet sig ind (1-31)?");
-            int indmeldelsesDag = readInteger(4);
+            int indmeldelsesDag = readEmptyInteger(4);
             sc.nextLine();
             System.out.println("Er der tale om et aktivt eller passivt medlemskab?");
             String medlemskabsType = sc.nextLine();
@@ -160,8 +160,9 @@ public class UserInterface {
     }
 
     public int readInteger(int dataType) {
+        String text;
         while (!sc.hasNextInt()) {
-            String text = sc.nextLine();
+            text = sc.nextLine();
             System.out.println("Du skal skrive et heltal!");
         }
         int data = sc.nextInt();
@@ -213,5 +214,15 @@ public class UserInterface {
             }
         }
         return data;
+    }
+
+    private int readEmptyInteger(int dataType) {
+        String text = sc.nextLine();
+        if (text.isEmpty()) {
+            return 9999;
+        } else {
+            readInteger(dataType);
+        }
+        return 9999;
     }
 }
