@@ -25,6 +25,7 @@ public class UserInterface {
                                 
                 1. Opret medlem
                 2. Vis alle medlemmer
+                3. Søg efter medlem
                 9. Afslut
                 """);
     }
@@ -38,7 +39,8 @@ public class UserInterface {
                 controller.showMedlemmer();
                 break;
             case 3:
-                //valg 3//
+                System.out.println("Tast navnet på det medlem du vil søge efter: " + '\n');
+                controller.searchMedlemByName(sc.next());
                 break;
             case 4:
                 //valg 4//

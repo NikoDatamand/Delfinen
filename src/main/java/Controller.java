@@ -29,4 +29,8 @@ public class Controller {
         medlemsDatabase.showMedlemmer();
     }
 
+    public void searchMedlemByName(String medlemName){
+        medlemsDatabase.searchMedlem(medlemName);
+    }
+
 }
