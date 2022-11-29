@@ -17,8 +17,8 @@ class DatabaseTest {
     void addMedlemToDatabaseTest() {
         int expectedObjectsInDatabase = 2;
 
-        Medlem testMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
-        Medlem testMedlem2 = new Medlem("X", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
+        Medlem testMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "xx xx xx xx", "x@x.dk", "xxxx", "aktivt", "motionist");
+        Medlem testMedlem2 = new Medlem("X", 1, 'm', 2000, 1, 1, "xx xx xx xx", "x@x.dk", "xxxx", "aktivt", "motionist");
         database.addMedlemToDatabase(testMedlem);
         database.addMedlemToDatabase(testMedlem2);
 
@@ -27,14 +27,14 @@ class DatabaseTest {
 
     @Test
     void searchMedlemTest() {
-        Medlem expectedMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
-        Medlem expectedMedlem2 = new Medlem("X", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
+        Medlem expectedMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "xx xx xx xx", "x@x.dk", "xxxx", "aktivt", "motionist");
+        Medlem expectedMedlem2 = new Medlem("X", 1, 'm', 2000, 1, 1, "xx xx xx xx", "x@x.dk", "xxxx", "aktivt", "motionist");
         ArrayList<Medlem> expectedShowMedlemmer = new ArrayList<>();
         expectedShowMedlemmer.add(expectedMedlem);
         expectedShowMedlemmer.add(expectedMedlem2);
 
-        Medlem testMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
-        Medlem testMedlem2 = new Medlem("X", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
+        Medlem testMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "xx xx xx xx", "x@x.dk", "xxxx", "aktivt", "motionist");
+        Medlem testMedlem2 = new Medlem("X", 1, 'm', 2000, 1, 1, "xx xx xx xx", "x@x.dk", "xxxx", "aktivt", "motionist");
         database.addMedlemToDatabase(testMedlem);
         database.addMedlemToDatabase(testMedlem2);
 
@@ -44,8 +44,8 @@ class DatabaseTest {
 
     @Test
     void editMedlem() {
-        Medlem expectedMedlem = new Medlem("Y", 2, 'f', 2020, 12, 12, "passivt", "konkurrencesvømmer");
-        Medlem testMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
+        Medlem expectedMedlem = new Medlem("Y", 2, 'f', 2020, 12, 12,"yy yy yy yy", "y@y.dk", "yyyy", "passivt", "konkurrencesvømmer");
+        Medlem testMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "xx xx xx xx", "x@x.dk", "xxxx", "aktivt", "motionist");
 
         database.editMedlem(testMedlem, expectedMedlem);
 
@@ -57,8 +57,8 @@ class DatabaseTest {
     void deleteMedlem() {
         int expectedObjectsInDatabase = 1;
 
-        Medlem testMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
-        Medlem testMedlem2 = new Medlem("Y", 1, 'm', 2000, 1, 1, "aktivt", "motionist");
+        Medlem testMedlem = new Medlem("X", 1, 'm', 2000, 1, 1, "xx xx xx xx", "x@x.dk", "xxxx", "aktivt", "motionist");
+        Medlem testMedlem2 = new Medlem("Y", 1, 'm', 2000, 1, 1, "yy yy yy yy", "y@y.dk", "yyyy", "aktivt", "motionist");
         database.addMedlemToDatabase(testMedlem);
         database.addMedlemToDatabase(testMedlem2);
 

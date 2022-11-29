@@ -13,12 +13,19 @@ public class Medlem implements Serializable {
     private int indmeldelsesMåned;
     private int indmeldelsesDag;
 
+    private String tlfNummer;
+    private String email;
+    private String adresse;
+
     private String typeMedlemskab;
     private String alderMedlemskab;
     private String aktivitetsniveauMedlemskab;
 
+    private int kontingentsats;
+    private int restance;
+
     //Constructor
-    public Medlem (String navn, int alder, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
+    public Medlem (String navn, int alder, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
         this.navn = navn;
         this.alder = alder;
         this.køn = køn;
@@ -26,6 +33,10 @@ public class Medlem implements Serializable {
         this.indmeldelsesÅr = indmeldelsesÅr;
         this.indmeldelsesMåned = indmeldelsesMåned;
         this.indmeldelsesDag = indmeldelsesDag;
+
+        this.tlfNummer = tlfNummer;
+        this.email = email;
+        this.adresse = adresse;
 
         this.typeMedlemskab = typeMedlemskab;
         setAlderMedlemskab();
@@ -56,6 +67,18 @@ public class Medlem implements Serializable {
 
     public void setIndmeldelsesDag(int indmeldelsesDag) {
         this.indmeldelsesDag = indmeldelsesDag;
+    }
+
+    public void setTlfNummer(String tlfNummer) {
+        this.tlfNummer = tlfNummer;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public void setTypeMedlemskab(String typeMedlemskab) {
@@ -106,6 +129,18 @@ public class Medlem implements Serializable {
         return myDateObj.format(myFormatObj);
     }
 
+    public String getTlfNummer() {
+        return tlfNummer;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
     public String getTypeMedlemskab() {
         return typeMedlemskab;
     }
@@ -153,6 +188,7 @@ public class Medlem implements Serializable {
     public String toString() {
         return "Medlemmet: " + navn + ", " + alder + " år, " + kønFormattingHelper() + '\n' +
                "Indmeldt den: " + getIndmeldelsesDato() + '\n' +
+                "Kontaktoplysninger: " + tlfNummer + ", " + email + ", " + adresse + '\n' +
                 "Type medlemskab: " + typeMedlemskab + ", " + alderMedlemskab + ", " + aktivitetsniveauMedlemskab;
     }
 }

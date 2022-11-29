@@ -75,12 +75,18 @@ public class UserInterface {
         System.out.println("Hvilken dag meldte medlemmet sig ind (1-31)?");
         int indmeldelsesDag = readInteger(4);
         sc.nextLine();
+        System.out.println("Hvad er medlemmets telefonnummer?");
+        String tlfNummer = sc.nextLine();
+        System.out.println("Hvad er medlemmets email?");
+        String email = sc.nextLine();
+        System.out.println("Hvad er medlemmets adresse?");
+        String adresse = sc.nextLine();
         System.out.println("Er der tale om et aktivt eller passivt medlemskab?");
         String medlemskabsType = sc.nextLine();
         System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
         String aktivitetsNiveau = sc.nextLine();
 
-        Medlem nytMedlem = new Medlem(navn, alder, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, medlemskabsType, aktivitetsNiveau);
+        Medlem nytMedlem = new Medlem(navn, alder, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
         controller.addMedlemToDatabase(nytMedlem);
 
         System.out.println("Medlemmet er nu oprettet i databasen");
@@ -115,12 +121,18 @@ public class UserInterface {
             System.out.println("Hvilken dag meldte medlemmet sig ind (1-31)?");
             int indmeldelsesDag = readEmptyInteger(4);
             sc.nextLine();
+            System.out.println("Hvad er medlemmets telefonnummer?");
+            String tlfNummer = sc.nextLine();
+            System.out.println("Hvad er medlemmets email?");
+            String email = sc.nextLine();
+            System.out.println("Hvad er medlemmets adresse?");
+            String adresse = sc.nextLine();
             System.out.println("Er der tale om et aktivt eller passivt medlemskab?");
             String medlemskabsType = sc.nextLine();
             System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
             String aktivitetsNiveau = sc.nextLine();
 
-            Medlem newMedlemInfo = new Medlem(navn, alder, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, medlemskabsType, aktivitetsNiveau);
+            Medlem newMedlemInfo = new Medlem(navn, alder, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
             controller.editMedlem(medlemToBeEdited, newMedlemInfo);
 
             System.out.println("Medlemmet er nu opdateret i databasen");

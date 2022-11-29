@@ -67,6 +67,18 @@ public class Database {
             medlemToBeEdited.setIndmeldelsesDag(newMedlemInfo.getIndmeldelsesDag());
         }
 
+        if(!newMedlemInfo.getTlfNummer().isEmpty()){
+            medlemToBeEdited.setTlfNummer(newMedlemInfo.getTlfNummer());
+        }
+
+        if(!newMedlemInfo.getEmail().isEmpty()){
+            medlemToBeEdited.setEmail(newMedlemInfo.getEmail());
+        }
+
+        if(!newMedlemInfo.getAdresse().isEmpty()){
+            medlemToBeEdited.setAdresse(newMedlemInfo.getAdresse());
+        }
+
         if(!newMedlemInfo.getTypeMedlemskab().isEmpty()){
             medlemToBeEdited.setTypeMedlemskab(newMedlemInfo.getTypeMedlemskab());
         }
