@@ -5,7 +5,12 @@ public class Database {
 
     private ArrayList<Medlem> medlemsDatabase = new ArrayList<>();
 
-    //Search method
+    //Create
+    public void addMedlemToDatabase(Medlem medlem){
+        medlemsDatabase.add(medlem);
+    }
+
+    //Read
     public void showMedlemmer () {
         int index = 1;
         for (Medlem medlem : medlemsDatabase) {
@@ -85,9 +90,5 @@ public class Database {
     //GET
     public ArrayList<Medlem> getMedlemsDatabase() {
         return medlemsDatabase;
-    }
-    //ADD
-    public void addMedlemToDatabase(Medlem medlem){
-        medlemsDatabase.add(medlem);
     }
 }
