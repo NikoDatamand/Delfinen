@@ -12,7 +12,7 @@ public class Medlem implements Serializable {
     private int indmeldelsesÅr;
     private int indmeldelsesMåned;
     private int indmeldelsesDag;
-
+    
     private String tlfNummer;
     private String email;
     private String adresse;
@@ -41,6 +41,7 @@ public class Medlem implements Serializable {
         this.typeMedlemskab = typeMedlemskab;
         setAlderMedlemskab();
         this.aktivitetsniveauMedlemskab = aktivitetsniveauMedlemskab;
+        calculateSats();
     }
 
     //Setters
@@ -88,8 +89,11 @@ public class Medlem implements Serializable {
     private void setAlderMedlemskab() {
         if (alder < 18){
             alderMedlemskab = "juniorsvømmer";
-        } else {
+        } else if(alder > 60){
+            alderMedlemskab = "super seniorsvømmer";
+        } else{
             alderMedlemskab = "seniorsvømmer";
+            
         }
     }
 
@@ -110,6 +114,7 @@ public class Medlem implements Serializable {
     public char getKøn() {
         return køn;
     }
+
 
     public int getIndmeldelsesÅr() {
         return indmeldelsesÅr;
@@ -155,7 +160,7 @@ public class Medlem implements Serializable {
 
     //Helper methods
     private String indmeldelsesmånedFormattingHelper(){
-        String returnvalue;
+        
         if (indmeldelsesMåned < 10){
             return "0" + indmeldelsesMåned;
         }
@@ -163,7 +168,7 @@ public class Medlem implements Serializable {
     }
 
     private String indmeldelsesdagFormattingHelper(){
-        String returnvalue;
+        
         if (indmeldelsesDag < 10){
             return "0" + indmeldelsesDag;
         }
@@ -181,7 +186,24 @@ public class Medlem implements Serializable {
         }
         return formattedKøn;
     }
-
+    // Beregn kontingentsats
+    public void calculateSats(){
+        int kontingent = 0;
+        if(typeMedlemskab.contains("aktivt")){
+            if(alderMedlemskab.equals("juniorsvømmer")){
+                kontingent = 1000;
+            }else if(alderMedlemskab.equals("seniorsvømmer")){
+                kontingent = 1600;
+            }else{
+                double kontingentDouble = 1600.00 * 0.75;
+                kontingent = (int)kontingentDouble;
+            }
+        }else{
+            kontingent = 500;
+        }
+        kontingentsats = kontingent;
+    }
+    
     //To String
 
     @Override
