@@ -12,7 +12,6 @@ public class Controller {
             fileHandler.attemptCreateFile();
             fileHandler.readFromFile(medlemsDatabase.getMedlemsDatabase());
         } catch (Exception e){
-            System.out.println("Error");
         }
     }
 
@@ -46,6 +45,10 @@ public class Controller {
         } catch (Exception e) {
             System.out.println("Error");
         }
+    }
+
+    public int showExpectedIncomeAggregated(){
+        return medlemsDatabase.calculateKontingentAggregated();
     }
 
 }

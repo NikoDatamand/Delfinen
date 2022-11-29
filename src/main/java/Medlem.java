@@ -158,6 +158,10 @@ public class Medlem implements Serializable {
         return aktivitetsniveauMedlemskab;
     }
 
+    public int getKontingentsats() {
+        return kontingentsats;
+    }
+
     //Helper methods
     private String indmeldelsesmånedFormattingHelper(){
         
@@ -211,6 +215,7 @@ public class Medlem implements Serializable {
         return "Medlemmet: " + navn + ", " + alder + " år, " + kønFormattingHelper() + '\n' +
                "Indmeldt den: " + getIndmeldelsesDato() + '\n' +
                 "Kontaktoplysninger: " + tlfNummer + ", " + email + ", " + adresse + '\n' +
-                "Type medlemskab: " + typeMedlemskab + ", " + alderMedlemskab + ", " + aktivitetsniveauMedlemskab;
+                "Type medlemskab: " + typeMedlemskab + ", " + alderMedlemskab + ", " + aktivitetsniveauMedlemskab + '\n' +
+                "Kontingentsats: " + getKontingentsats();
     }
 }

@@ -8,7 +8,7 @@ public class UserInterface {
     private int currentYear = LocalDateTime.now().getYear();
 
     public void loadUserInterface() {
-
+        System.out.println("Velkommen til svømmeklubben 'Delfinen'");
         boolean isRunning = true;
 
         while (isRunning) {
@@ -22,13 +22,14 @@ public class UserInterface {
     private void Intro() {
         System.out.println("""
                                 
-                Velkommen til svømmeklubben 'Delfinen'
+                Hovedmenu :
                                 
                 1. Opret medlem
                 2. Vis alle medlemmer
                 3. Søg efter medlem
                 4. Opdatér medlemsoplysninger
                 5. Slet medlem
+                6. Se forventet kontingentindkomst
                 9. Afslut
                 """);
     }
@@ -50,6 +51,9 @@ public class UserInterface {
                 break;
             case 5:
                 deleteMedlem();
+                break;
+            case 6:
+                System.out.println("Forventet indkomst for " + LocalDateTime.now().getYear() + " : " + controller.medlemsDatabase.calculateKontingentAggregated() + " DKK");
                 break;
             case 9:
                 System.exit(0);

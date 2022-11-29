@@ -99,6 +99,15 @@ public class Database {
         }
     }
 
+    //Kontingentberegning
+    public int calculateKontingentAggregated (){
+        int expectedIncome = 0;
+        for (Medlem medlem : medlemsDatabase) {
+            expectedIncome += medlem.getKontingentsats();
+        }
+        return expectedIncome;
+    }
+
     //GET
     public ArrayList<Medlem> getMedlemsDatabase() {
         return medlemsDatabase;
