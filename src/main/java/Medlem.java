@@ -13,12 +13,19 @@ public class Medlem implements Serializable {
     private int indmeldelsesMåned;
     private int indmeldelsesDag;
 
+    private String tlfNummer;
+    private String email;
+    private String adresse;
+
     private String typeMedlemskab;
     private String alderMedlemskab;
     private String aktivitetsniveauMedlemskab;
 
+    private int kontingentsats;
+    private int restance;
+
     //Constructor
-    public Medlem (String navn, int alder, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
+    public Medlem (String navn, int alder, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
         this.navn = navn;
         this.alder = alder;
         this.køn = køn;
@@ -26,6 +33,10 @@ public class Medlem implements Serializable {
         this.indmeldelsesÅr = indmeldelsesÅr;
         this.indmeldelsesMåned = indmeldelsesMåned;
         this.indmeldelsesDag = indmeldelsesDag;
+
+        this.tlfNummer = tlfNummer;
+        this.email = email;
+        this.adresse = adresse;
 
         this.typeMedlemskab = typeMedlemskab;
         setAlderMedlemskab();
@@ -104,6 +115,18 @@ public class Medlem implements Serializable {
         LocalDateTime myDateObj = LocalDateTime.parse(indmeldelsesÅr + "-" + indmeldelsesmånedFormattingHelper() + "-" + indmeldelsesdagFormattingHelper() + "T00:00:00");
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return myDateObj.format(myFormatObj);
+    }
+
+    public String getTlfNummer() {
+        return tlfNummer;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAdresse() {
+        return adresse;
     }
 
     public String getTypeMedlemskab() {
