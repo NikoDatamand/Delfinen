@@ -48,8 +48,9 @@ public class UserInterface {
 
     private void Formand() {
         System.out.println("""
-                                           
-                FORMANDS-MENU
+                     @@@@@@@@@@@@@@@@@@@@@@                           
+                     @@@  FORMANDS-MENU @@@
+                     @@@@@@@@@@@@@@@@@@@@@@
                 Her er dine muligheder
                                 
                 1. Opret medlem
@@ -89,6 +90,10 @@ public class UserInterface {
             case 9:
                 System.exit(0);
                 break;
+            default:
+                System.out.println("Der opstod en fejl. Vælg venligt relevant input");
+                Formand();
+                break;
         }
     }
 
@@ -114,6 +119,10 @@ public class UserInterface {
                 break;
             case 9:
                 System.exit(0);
+                Kasserer();
+                break;
+            default:
+                System.out.println("Der opstod en fejl. Vælg venligt relevant input");
                 break;
         }
     }
@@ -138,6 +147,10 @@ public class UserInterface {
                 break;
             case 9:
                 System.exit (0);
+                break;
+            default:
+                System.out.println("Der opstod en fejl. Vælg venligt relevant input");
+                Træner();
                 break;
         }
     }
