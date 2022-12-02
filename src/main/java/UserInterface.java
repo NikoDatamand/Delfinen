@@ -12,42 +12,42 @@ public class UserInterface {
         boolean isRunning = true;
 
         while (isRunning) {
-            Hvem();
-            Vælg();
-            FormandIntro();
-            FormandMenu();
-            KassererIntro();
-            KassererMenu();
-            TrænerIntro();
-            TrænerMenu();
-
+            HvemErDu();
+            Formand();
+            Kasserer();
+            Træner();
         }
     }
 
-    private void Hvem() {
+    private void HvemErDu() {
         System.out.println("""
                 Hvilken funktion har du i svømmeklubben?
                 1: Formand
                 2: Kasserer
-                3: Træner            
+                3: Træner
+                9: Afslut program            
                 """);
-    }
 
-    private void Vælg() {
         switch (sc.nextInt()) {
             case 1:
-                FormandIntro();
+                Formand();
                 break;
             case 2:
-                KassererIntro();
+                Kasserer();
                 break;
             case 3:
-                TrænerIntro();
+                Træner();
+                break;
+            case 9:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Der opstod en fejl. Vælg venligt relevant input");
                 break;
         }
     }
 
-    private void FormandIntro() {
+    private void Formand() {
         System.out.println("""
                                 
                 Hovedmenu :
@@ -57,13 +57,9 @@ public class UserInterface {
                 3. Søg efter medlem
                 4. Opdatér medlemsoplysninger
                 5. Slet medlem
-                6. Se forventet kontingentindkomst
-                7. Opdatér medlemmers restance status
                 9. Afslut
                 """);
-    }
 
-    private void FormandMenu() {
         switch (sc.nextInt()) {
             case 1:
                 createMedlem();
@@ -81,10 +77,24 @@ public class UserInterface {
             case 5:
                 deleteMedlem();
                 break;
-            case 6:
+            case 9:
+                System.exit(0);
+                break;
+        }
+    }
+
+    private void Kasserer() {
+        System.out.println("""
+                1. Se forventet kontingentindkomst
+                2. Opdatér medlemmers restance status
+                9: Afslut
+                """);
+
+        switch (sc.nextInt()) {
+            case 1:
                 System.out.println("Forventet indkomst for " + LocalDateTime.now().getYear() + " : " + controller.showExpectedIncomeAggregated() + " DKK");
                 break;
-            case 7:
+            case 2:
                 updateMedlemRestanceStatus();
                 break;
             case 9:
@@ -93,28 +103,16 @@ public class UserInterface {
         }
     }
 
-    private void KassererIntro() {
-        System.out.println("""
-                1: Noget økonomi
-                2: Noget fedt økonomi
-                3: Noget mere økonomi
-                """);
-    }
-
-    private void KassererMenu() {
-
-    }
-
-    private void TrænerIntro () {
+    private void Træner () {
         System.out.println("""
                 1: Se træningstider
                 2: Noget træningsnoget
                 3: Noget mere træningsnoget
                 """);
-    }
 
-    private void TrænerMenu () {
-
+        /* switch (sc.nextInt)) {
+        case 1:
+        */
     }
 
     private void createMedlem() {
