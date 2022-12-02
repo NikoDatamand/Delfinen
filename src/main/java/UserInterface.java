@@ -117,12 +117,16 @@ public class UserInterface {
                 updateMedlemRestanceStatus();
                 Kasserer();
                 break;
+            case 8:
+                Intro();
+                break;
             case 9:
                 System.exit(0);
                 Kasserer();
                 break;
             default:
                 System.out.println("Der opstod en fejl. Vælg venligt relevant input");
+                Kasserer();
                 break;
         }
     }
