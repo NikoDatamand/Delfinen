@@ -49,7 +49,7 @@ public class UserInterface {
     private void Formand() {
         System.out.println("""
                                            
-                VELKOMMEN FORMAND!
+                FORMANDS-MENU
                 Her er dine muligheder
                                 
                 1. Opret medlem
@@ -64,19 +64,24 @@ public class UserInterface {
         switch (sc.nextInt()) {
             case 1:
                 createMedlem();
+                Formand();
                 break;
             case 2:
                 controller.showMedlemmer();
+                Formand();
                 break;
             case 3:
                 System.out.println("Tast navnet på det medlem du vil søge efter: " + '\n');
                 controller.searchMedlemByName(sc.next());
+                Formand();
                 break;
             case 4:
                 editMedlem();
+                Formand();
                 break;
             case 5:
                 deleteMedlem();
+                Formand();
                 break;
             case 8:
                 Intro();
@@ -89,7 +94,7 @@ public class UserInterface {
 
     private void Kasserer() {
         System.out.println("""
-                VELKOMMEN KASSERER!
+                KASSERER-MENU
                 Her er dine muligheder
                 
                 1: Se forventet kontingentindkomst
@@ -101,9 +106,11 @@ public class UserInterface {
         switch (sc.nextInt()) {
             case 1:
                 System.out.println("Forventet indkomst for " + LocalDateTime.now().getYear() + " : " + controller.showExpectedIncomeAggregated() + " DKK");
+                Kasserer();
                 break;
             case 2:
                 updateMedlemRestanceStatus();
+                Kasserer();
                 break;
             case 9:
                 System.exit(0);
@@ -113,7 +120,7 @@ public class UserInterface {
 
     private void Træner () {
         System.out.println("""
-                VELKOMMEN TRÆNER!
+                TRÆNER-MENU
                 Her er dine muligheder
                 
                 1: Se træningstider
@@ -124,6 +131,7 @@ public class UserInterface {
         switch (sc.nextInt()) {
             case 1:
                 System.out.println("Her skal man kunne se medlemmets træningstider");
+                Træner();
                 break;
             case 8:
                 Intro ();
