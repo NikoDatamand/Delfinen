@@ -12,14 +12,42 @@ public class UserInterface {
         boolean isRunning = true;
 
         while (isRunning) {
-
-            Intro();
-            Menu();
+            Hvem();
+            Vælg();
+            FormandIntro();
+            FormandMenu();
+            KassererIntro();
+            KassererMenu();
+            TrænerIntro();
+            TrænerMenu();
 
         }
     }
 
-    private void Intro() {
+    private void Hvem() {
+        System.out.println("""
+                Hvilken funktion har du i svømmeklubben?
+                1: Formand
+                2: Kasserer
+                3: Træner            
+                """);
+    }
+
+    private void Vælg() {
+        switch (sc.nextInt()) {
+            case 1:
+                FormandIntro();
+                break;
+            case 2:
+                KassererIntro();
+                break;
+            case 3:
+                TrænerIntro();
+                break;
+        }
+    }
+
+    private void FormandIntro() {
         System.out.println("""
                                 
                 Hovedmenu :
@@ -34,7 +62,7 @@ public class UserInterface {
                 """);
     }
 
-    private void Menu() {
+    private void FormandMenu() {
         switch (sc.nextInt()) {
             case 1:
                 createMedlem();
@@ -59,6 +87,30 @@ public class UserInterface {
                 System.exit(0);
                 break;
         }
+    }
+
+    private void KassererIntro() {
+        System.out.println("""
+                1: Noget økonomi
+                2: Noget fedt økonomi
+                3: Noget mere økonomi
+                """);
+    }
+
+    private void KassererMenu() {
+
+    }
+
+    private void TrænerIntro () {
+        System.out.println("""
+                1: Se træningstider
+                2: Noget træningsnoget
+                3: Noget mere træningsnoget
+                """);
+    }
+
+    private void TrænerMenu () {
+
     }
 
     private void createMedlem() {
