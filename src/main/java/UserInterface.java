@@ -18,6 +18,8 @@ public class UserInterface {
 
     private void Intro() {
         System.out.println("""
+                HOVEDMENU
+                
                 Hvilken funktion har du i svømmeklubben?
                 1: Formand
                 2: Kasserer
