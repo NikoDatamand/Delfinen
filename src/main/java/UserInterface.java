@@ -30,6 +30,7 @@ public class UserInterface {
                 4. Opdatér medlemsoplysninger
                 5. Slet medlem
                 6. Se forventet kontingentindkomst
+                7. Opdatér medlemmers restance status
                 9. Afslut
                 """);
     }
@@ -53,7 +54,10 @@ public class UserInterface {
                 deleteMedlem();
                 break;
             case 6:
-                System.out.println("Forventet indkomst for " + LocalDateTime.now().getYear() + " : " + controller.medlemsDatabase.calculateKontingentAggregated() + " DKK");
+                System.out.println("Forventet indkomst for " + LocalDateTime.now().getYear() + " : " + controller.showExpectedIncomeAggregated() + " DKK");
+                break;
+            case 7:
+                updateMedlemRestanceStatus();
                 break;
             case 9:
                 System.exit(0);
@@ -162,7 +166,31 @@ public class UserInterface {
         }
     }
 
-            //Helping methods
+    private void updateMedlemRestanceStatus() {
+        sc.nextLine();
+        System.out.println("Hvad er navnet på medlemmet hvis restance status skal opdateres?");
+        ArrayList<Medlem> foundMedlemmer = controller.searchMedlemByName(sc.nextLine());
+
+        if (!foundMedlemmer.isEmpty()) {
+            System.out.println("Tast nummeret på medlemmet du vil opdatere: ");
+            int searchNumber = sc.nextInt();
+            Medlem medlemToBeUpdated= foundMedlemmer.get(searchNumber - 1);
+            sc.nextLine();
+            System.out.println("Er medlemmet i restance? (ja/nej)");
+            String status = sc.nextLine();
+            if (status.equalsIgnoreCase("ja")) {
+                medlemToBeUpdated.setRestance(true);
+            } else if (status.equalsIgnoreCase("nej")) {
+                medlemToBeUpdated.setRestance(false);
+            }
+            System.out.println("Medlemmets restance status er nu opdateret." + ".\n");
+        } else {
+            System.out.println("Et medlem med det navn kunne ikke findes.");
+        }
+    }
+
+
+    //Helping methods
     private char kønToChar(String køn) {
         char kønChar;
         if (køn.equalsIgnoreCase("mand")) {

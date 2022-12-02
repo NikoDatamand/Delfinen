@@ -22,7 +22,7 @@ public class Medlem implements Serializable {
     private String aktivitetsniveauMedlemskab;
 
     private int kontingentsats;
-    private int restance;
+    private boolean restance;
 
     //Constructor
     public Medlem (String navn, int alder, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
@@ -101,6 +101,10 @@ public class Medlem implements Serializable {
         this.aktivitetsniveauMedlemskab = aktivitetsniveauMedlemskab;
     }
 
+    public void setRestance(boolean restance) {
+        this.restance = restance;
+    }
+
     //Getters
 
     public String getNavn() {
@@ -162,6 +166,24 @@ public class Medlem implements Serializable {
         return kontingentsats;
     }
 
+    // Beregn kontingentsats
+    public void calculateSats(){
+        int kontingent = 0;
+        if(typeMedlemskab.contains("aktivt")){
+            if(alderMedlemskab.equals("juniorsvømmer")){
+                kontingent = 1000;
+            }else if(alderMedlemskab.equals("seniorsvømmer")){
+                kontingent = 1600;
+            }else{
+                double kontingentDouble = 1600.00 * 0.75;
+                kontingent = (int)kontingentDouble;
+            }
+        }else{
+            kontingent = 500;
+        }
+        kontingentsats = kontingent;
+    }
+
     //Helper methods
     private String indmeldelsesmånedFormattingHelper(){
         
@@ -190,24 +212,17 @@ public class Medlem implements Serializable {
         }
         return formattedKøn;
     }
-    // Beregn kontingentsats
-    public void calculateSats(){
-        int kontingent = 0;
-        if(typeMedlemskab.contains("aktivt")){
-            if(alderMedlemskab.equals("juniorsvømmer")){
-                kontingent = 1000;
-            }else if(alderMedlemskab.equals("seniorsvømmer")){
-                kontingent = 1600;
-            }else{
-                double kontingentDouble = 1600.00 * 0.75;
-                kontingent = (int)kontingentDouble;
-            }
-        }else{
-            kontingent = 500;
+
+    private String restanceFormattingHelper(){
+        String returnvalue;
+        if (restance) {
+            returnvalue = "ja";
+        } else {
+            returnvalue = "nej";
         }
-        kontingentsats = kontingent;
+        return returnvalue;
     }
-    
+
     //To String
 
     @Override
@@ -216,6 +231,7 @@ public class Medlem implements Serializable {
                "Indmeldt den: " + getIndmeldelsesDato() + '\n' +
                 "Kontaktoplysninger: " + tlfNummer + ", " + email + ", " + adresse + '\n' +
                 "Type medlemskab: " + typeMedlemskab + ", " + alderMedlemskab + ", " + aktivitetsniveauMedlemskab + '\n' +
-                "Kontingentsats: " + getKontingentsats();
+                "Kontingentsats: " + getKontingentsats() + '\n' +
+                "Restance: " + restanceFormattingHelper();
     }
 }

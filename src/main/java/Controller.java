@@ -50,5 +50,4 @@ public class Controller {
     public int showExpectedIncomeAggregated(){
         return medlemsDatabase.calculateKontingentAggregated();
     }
-
 }
