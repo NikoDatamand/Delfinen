@@ -13,9 +13,6 @@ public class UserInterface {
 
         while (isRunning) {
             HvemErDu();
-            Formand();
-            Kasserer();
-            Træner();
         }
     }
 
@@ -49,8 +46,8 @@ public class UserInterface {
 
     private void Formand() {
         System.out.println("""
-                                
-                Hovedmenu :
+                                           
+                Hovedmenu:
                                 
                 1. Opret medlem
                 2. Vis alle medlemmer
@@ -106,13 +103,17 @@ public class UserInterface {
     private void Træner () {
         System.out.println("""
                 1: Se træningstider
-                2: Noget træningsnoget
-                3: Noget mere træningsnoget
+                9: Afslut program
                 """);
 
-        /* switch (sc.nextInt)) {
-        case 1:
-        */
+        switch (sc.nextInt()) {
+            case 1:
+                System.out.println("Her skal man kunne se medlemmets træningstider");
+                break;
+            case 9:
+                System.exit (0);
+                break;
+        }
     }
 
     private void createMedlem() {
