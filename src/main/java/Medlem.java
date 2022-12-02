@@ -6,6 +6,8 @@ import java.util.Objects;
 public class Medlem implements Serializable {
 
     private String navn;
+    
+    private int fødselsår;
     private int alder;
     private char køn;
 
@@ -25,9 +27,10 @@ public class Medlem implements Serializable {
     private int restance;
 
     //Constructor
-    public Medlem (String navn, int alder, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
+    public Medlem (String navn, int fødselsår, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
         this.navn = navn;
-        this.alder = alder;
+        this.fødselsår = fødselsår;
+        alder = (LocalDateTime.now().getYear()) - fødselsår;
         this.køn = køn;
 
         this.indmeldelsesÅr = indmeldelsesÅr;
@@ -50,6 +53,10 @@ public class Medlem implements Serializable {
         this.navn = navn;
     }
 
+    public void setFødselsår(){
+        this.fødselsår = fødselsår;
+    }
+    
     public void setAlder(int alder) {
         this.alder = alder;
     }
@@ -106,7 +113,10 @@ public class Medlem implements Serializable {
     public String getNavn() {
         return navn;
     }
-
+    public int getFødselsår(){
+        return fødselsår;
+    }
+    
     public int getAlder() {
         return alder;
     }

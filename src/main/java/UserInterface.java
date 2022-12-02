@@ -65,8 +65,8 @@ public class UserInterface {
         sc.nextLine();
         System.out.println("Hvad er det fulde navn på medlemmet der skal oprettes?");
         String navn = sc.nextLine();
-        System.out.println("Hvad er medlemmets alder?");
-        int alder = readInteger(1);
+        System.out.println("Hvilket år er medlemmet født i?");
+        int fødselsår = readInteger(1);
         sc.nextLine();
         System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
         char køn = kønToChar(sc.nextLine());
@@ -90,7 +90,7 @@ public class UserInterface {
         System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
         String aktivitetsNiveau = sc.nextLine();
 
-        Medlem nytMedlem = new Medlem(navn, alder, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
+        Medlem nytMedlem = new Medlem(navn, fødselsår, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
         controller.addMedlemToDatabase(nytMedlem);
 
         System.out.println("Medlemmet er nu oprettet i databasen");
@@ -111,8 +111,8 @@ public class UserInterface {
 
             System.out.println("Hvad er det fulde navn på medlemmet?");
             String navn = sc.nextLine();
-            System.out.println("Hvad er medlemmets alder?");
-            int alder = readEmptyInteger(1);
+            System.out.println("Hvilket år er medlemmet født i?");
+            int fødselsår = readEmptyInteger(1);
             sc.nextLine();
             System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
             char køn = kønToChar(sc.nextLine());
@@ -136,7 +136,7 @@ public class UserInterface {
             System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
             String aktivitetsNiveau = sc.nextLine();
 
-            Medlem newMedlemInfo = new Medlem(navn, alder, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
+            Medlem newMedlemInfo = new Medlem(navn, fødselsår, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
             controller.editMedlem(medlemToBeEdited, newMedlemInfo);
 
             System.out.println("Medlemmet er nu opdateret i databasen");
@@ -184,12 +184,12 @@ public class UserInterface {
         int data = sc.nextInt();
         switch (dataType) {
             case 1 -> {
-                boolean isCorrectAge = false;
-                while (!isCorrectAge) {
-                    if (data >= 0 && data <= 150) {
+                boolean isCorrectBirthYear = false;
+                while (!isCorrectBirthYear) {
+                    if (data >= 1900 && data <= (LocalDateTime.now().getYear())) {
                         return data;
                     } else {
-                        System.out.println("Ugyldig alder");
+                        System.out.println("Ugyldigt fødselsår");
                         data = sc.nextInt();
                     }
                 }
