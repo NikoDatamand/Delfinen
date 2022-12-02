@@ -12,11 +12,11 @@ public class UserInterface {
         boolean isRunning = true;
 
         while (isRunning) {
-            HvemErDu();
+            Intro();
         }
     }
 
-    private void HvemErDu() {
+    private void Intro() {
         System.out.println("""
                 Hvilken funktion har du i svømmeklubben?
                 1: Formand
@@ -47,13 +47,15 @@ public class UserInterface {
     private void Formand() {
         System.out.println("""
                                            
-                Hovedmenu:
+                VELKOMMEN FORMAND!
+                Her er dine muligheder
                                 
                 1. Opret medlem
                 2. Vis alle medlemmer
                 3. Søg efter medlem
                 4. Opdatér medlemsoplysninger
                 5. Slet medlem
+                8. Gå tilbage til hovedmenu
                 9. Afslut
                 """);
 
@@ -74,6 +76,9 @@ public class UserInterface {
             case 5:
                 deleteMedlem();
                 break;
+            case 8:
+                Intro();
+                break;
             case 9:
                 System.exit(0);
                 break;
@@ -82,8 +87,12 @@ public class UserInterface {
 
     private void Kasserer() {
         System.out.println("""
-                1. Se forventet kontingentindkomst
-                2. Opdatér medlemmers restance status
+                VELKOMMEN KASSERER!
+                Her er dine muligheder
+                
+                1: Se forventet kontingentindkomst
+                2: Opdatér medlemmers restance status
+                8: Gå tilbage til hovedmenu
                 9: Afslut
                 """);
 
@@ -102,13 +111,20 @@ public class UserInterface {
 
     private void Træner () {
         System.out.println("""
+                VELKOMMEN TRÆNER!
+                Her er dine muligheder
+                
                 1: Se træningstider
+                8: Gå tilbage til hovedmenu
                 9: Afslut program
                 """);
 
         switch (sc.nextInt()) {
             case 1:
                 System.out.println("Her skal man kunne se medlemmets træningstider");
+                break;
+            case 8:
+                Intro ();
                 break;
             case 9:
                 System.exit (0);
