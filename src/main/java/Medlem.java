@@ -108,8 +108,8 @@ public class Medlem implements Serializable {
         this.aktivitetsniveauMedlemskab = aktivitetsniveauMedlemskab;
     }
 
-    public void setRestance(boolean restance) {
-        this.restance = restance;
+    public void setRestance(boolean restanceStatus) {
+        this.restance = restanceStatus;
     }
 
     //Getters
@@ -174,6 +174,10 @@ public class Medlem implements Serializable {
 
     public int getKontingentsats() {
         return kontingentsats;
+    }
+
+    public boolean getRestance(){
+        return restance;
     }
 
     // Beregn kontingentsats

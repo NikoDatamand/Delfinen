@@ -48,9 +48,7 @@ public class UserInterface {
 
     private void Formand() {
         System.out.println("""
-                     @@@@@@@@@@@@@@@@@@@@@@                           
-                     @@@  FORMANDS-MENU @@@
-                     @@@@@@@@@@@@@@@@@@@@@@
+                ____ FORMAND-MENU ____
                 Her er dine muligheder
                                 
                 1. Opret medlem
@@ -99,7 +97,7 @@ public class UserInterface {
 
     private void Kasserer() {
         System.out.println("""
-                KASSERER-MENU
+                ____ KASSERER-MENU ____
                 Her er dine muligheder
                 
                 1: Se forventet kontingentindkomst
@@ -133,7 +131,7 @@ public class UserInterface {
 
     private void Træner () {
         System.out.println("""
-                TRÆNER-MENU
+                ____ TRÆNER-MENU ____
                 Her er dine muligheder
                 
                 1: Se træningstider
@@ -270,6 +268,7 @@ public class UserInterface {
             int searchNumber = sc.nextInt();
             Medlem medlemToBeUpdated= foundMedlemmer.get(searchNumber - 1);
             sc.nextLine();
+            System.out.println(" ");
             System.out.println("Er medlemmet i restance? (ja/nej)");
             String status = sc.nextLine();
             if (status.equalsIgnoreCase("ja")) {

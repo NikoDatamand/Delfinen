@@ -7,6 +7,7 @@ public class Database {
 
     //Create
     public void addMedlemToDatabase(Medlem medlem){
+        medlem.setRestance(false);
         medlemsDatabase.add(medlem);
     }
 
@@ -26,6 +27,7 @@ public class Database {
         int index = 1;
         for (Medlem medlem : medlemsDatabase) {
             if (medlem.getNavn().toLowerCase().contains(søgMedlemNavn.toLowerCase())) {
+                System.out.println(" ");
                 System.out.println(index + ".\n" + medlem + ".\n");
                 foundMedlemmer.add(medlem);
                 fundet = true;
