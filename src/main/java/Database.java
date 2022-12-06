@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.time.*;
 
 public class Database {
 
@@ -57,7 +58,9 @@ public class Database {
             medlemToBeEdited.setKøn(kønChar);
         }
 
-        if(newMedlemInfo.getIndmeldelsesÅr() != 9999){
+        LocalDate indmeldelsesDato = newMedlemInfo.getIndmeldelsesDato();
+            medlemToBeEdited.setIndmeldelsesDato(newMedlemInfo.getIndmeldelsesDato());
+        /*if(newMedlemInfo.getIndmeldelsesÅr() != 9999){
             medlemToBeEdited.setIndmeldelsesÅr(newMedlemInfo.getIndmeldelsesÅr());
         }
 
@@ -67,7 +70,7 @@ public class Database {
 
         if(newMedlemInfo.getIndmeldelsesDag() != 9999){
             medlemToBeEdited.setIndmeldelsesDag(newMedlemInfo.getIndmeldelsesDag());
-        }
+        }*/
 
         if(!newMedlemInfo.getTlfNummer().isEmpty()){
             medlemToBeEdited.setTlfNummer(newMedlemInfo.getTlfNummer());
