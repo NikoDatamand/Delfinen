@@ -12,10 +12,7 @@ public class Medlem implements Serializable {
     private int alder;
     private char køn;
 
-    private int indmeldelsesÅr;
-    private int indmeldelsesMåned;
-    private int indmeldelsesDag;
-    
+    private LocalDate indmeldelsesDato;
     private String tlfNummer;
     private String email;
     private String adresse;
@@ -28,16 +25,13 @@ public class Medlem implements Serializable {
     private boolean restance;
 
     //Constructor
-    public Medlem (String navn, LocalDate fødselsdag, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
+    public Medlem (String navn, LocalDate fødselsdag, char køn, LocalDate indmeldelsesDato, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
         this.navn = navn;
         this.fødselsdag = fødselsdag;
         LocalDate currentDate = LocalDate.now();
         alder = Period.between(fødselsdag, currentDate).getYears();
         this.køn = køn;
-
-        this.indmeldelsesÅr = indmeldelsesÅr;
-        this.indmeldelsesMåned = indmeldelsesMåned;
-        this.indmeldelsesDag = indmeldelsesDag;
+        this.indmeldelsesDato = indmeldelsesDato;
 
         this.tlfNummer = tlfNummer;
         this.email = email;
@@ -55,7 +49,7 @@ public class Medlem implements Serializable {
         this.navn = navn;
     }
 
-    public void setFødselsdag(){
+    public void setFødselsdag(LocalDate fødselsdag){
         this.fødselsdag = fødselsdag;
     }
     
@@ -68,16 +62,8 @@ public class Medlem implements Serializable {
         this.køn = køn;
     }
 
-    public void setIndmeldelsesÅr(int indmeldelsesÅr) {
-        this.indmeldelsesÅr = indmeldelsesÅr;
-    }
-
-    public void setIndmeldelsesMåned(int indmeldelsesMåned) {
-        this.indmeldelsesMåned = indmeldelsesMåned;
-    }
-
-    public void setIndmeldelsesDag(int indmeldelsesDag) {
-        this.indmeldelsesDag = indmeldelsesDag;
+    public void setIndmeldelsesDato(LocalDate indmeldelsesDato) {
+        this.indmeldelsesDato = indmeldelsesDato;
     }
 
     public void setTlfNummer(String tlfNummer) {
@@ -133,23 +119,8 @@ public class Medlem implements Serializable {
         return køn;
     }
 
-
-    public int getIndmeldelsesÅr() {
-        return indmeldelsesÅr;
-    }
-
-    public int getIndmeldelsesMåned() {
-        return indmeldelsesMåned;
-    }
-
-    public int getIndmeldelsesDag() {
-        return indmeldelsesDag;
-    }
-
-    public String getIndmeldelsesDato() {
-        LocalDateTime myDateObj = LocalDateTime.parse(indmeldelsesÅr + "-" + indmeldelsesmånedFormattingHelper() + "-" + indmeldelsesdagFormattingHelper() + "T00:00:00");
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return myDateObj.format(myFormatObj);
+    public LocalDate getIndmeldelsesDato(){
+        return indmeldelsesDato;
     }
 
     public String getTlfNummer() {
@@ -203,22 +174,11 @@ public class Medlem implements Serializable {
     }
 
     //Helper methods
-    private String indmeldelsesmånedFormattingHelper(){
-        
-        if (indmeldelsesMåned < 10){
-            return "0" + indmeldelsesMåned;
-        }
-        return String.valueOf(indmeldelsesMåned);
+    public String showIndmeldelsesDato() { 
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return indmeldelsesDato.format(myFormatObj);
     }
-
-    private String indmeldelsesdagFormattingHelper(){
-        
-        if (indmeldelsesDag < 10){
-            return "0" + indmeldelsesDag;
-        }
-        return String.valueOf(indmeldelsesDag);
-    }
-
+    
     private String kønFormattingHelper(){
         String formattedKøn;
         if (køn == 'm'){
@@ -246,7 +206,7 @@ public class Medlem implements Serializable {
     @Override
     public String toString() {
         return "Medlemmet: " + navn + ", " + alder + " år, " + kønFormattingHelper() + '\n' +
-               "Indmeldt den: " + getIndmeldelsesDato() + '\n' +
+               "Indmeldt den: " + showIndmeldelsesDato() + '\n' +
                 "Kontaktoplysninger: " + tlfNummer + ", " + email + ", " + adresse + '\n' +
                 "Type medlemskab: " + typeMedlemskab + ", " + alderMedlemskab + ", " + aktivitetsniveauMedlemskab + '\n' +
                 "Kontingentsats: " + getKontingentsats() + '\n' +

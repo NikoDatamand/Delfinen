@@ -167,15 +167,9 @@ public class UserInterface {
         LocalDate fødselsdag = LocalDate.parse(input);
         System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
         char køn = kønToChar(sc.nextLine());
-        System.out.println("Hvilket år meldte medlemmet sig ind?");
-        int indmeldelsesÅr = readInteger(2);
-        sc.nextLine();
-        System.out.println("Hvilken måned meldte medlemmet sig ind (1-12)?");
-        int indmeldelsesMåned = readInteger(3);
-        sc.nextLine();
-        System.out.println("Hvilken dag meldte medlemmet sig ind (1-31)?");
-        int indmeldelsesDag = readInteger(4);
-        sc.nextLine();
+        System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
+        String input2 = sc.nextLine();
+        LocalDate indmeldelsesDato = LocalDate.parse(input2);
         System.out.println("Hvad er medlemmets telefonnummer?");
         String tlfNummer = sc.nextLine();
         System.out.println("Hvad er medlemmets email?");
@@ -187,7 +181,7 @@ public class UserInterface {
         System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
         String aktivitetsNiveau = sc.nextLine();
 
-        Medlem nytMedlem = new Medlem(navn, fødselsdag, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
+        Medlem nytMedlem = new Medlem(navn, fødselsdag, køn, indmeldelsesDato, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
         controller.addMedlemToDatabase(nytMedlem);
 
         System.out.println("Medlemmet er nu oprettet i databasen");
@@ -213,12 +207,9 @@ public class UserInterface {
             LocalDate fødselsdag = LocalDate.parse(input);
             System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
             char køn = kønToChar(sc.nextLine());
-            System.out.println("Hvilket år meldte medlemmet sig ind?");
-            int indmeldelsesÅr = readEmptyInteger(2);
-            System.out.println("Hvilken måned meldte medlemmet sig ind (1-12)?");
-            int indmeldelsesMåned = readEmptyInteger(3);
-            System.out.println("Hvilken dag meldte medlemmet sig ind (1-31)?");
-            int indmeldelsesDag = readEmptyInteger(4);
+            System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
+            String input2 = sc.nextLine();
+            LocalDate indmeldelsesDato = LocalDate.parse(input2);
             System.out.println("Hvad er medlemmets telefonnummer?");
             String tlfNummer = sc.nextLine();
             System.out.println("Hvad er medlemmets email?");
@@ -230,7 +221,7 @@ public class UserInterface {
             System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
             String aktivitetsNiveau = sc.nextLine();
 
-            Medlem newMedlemInfo = new Medlem(navn, fødselsdag, køn, indmeldelsesÅr, indmeldelsesMåned, indmeldelsesDag, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
+            Medlem newMedlemInfo = new Medlem(navn, fødselsdag, køn, indmeldelsesDato, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
             controller.editMedlem(medlemToBeEdited, newMedlemInfo);
 
             System.out.println("Medlemmet er nu opdateret i databasen");
