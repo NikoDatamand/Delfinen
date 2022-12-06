@@ -37,7 +37,12 @@ public class Controller {
     }
 
     public void editMedlem (Medlem medlemToBeEdited, Medlem newMedlemInfo) {
-        medlemsDatabase.editMedlem(medlemToBeEdited, newMedlemInfo);
+        try{
+            medlemsDatabase.editMedlem(medlemToBeEdited, newMedlemInfo);
+            fileHandler.writeToFile(medlemsDatabase.getMedlemsDatabase());
+        } catch (Exception e){
+            System.out.println("Error");
+        }
     }
 
     public void deleteMedlem (String medlemToBeDelted) {

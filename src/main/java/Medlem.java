@@ -2,12 +2,13 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.time.*;
 
 public class Medlem implements Serializable {
 
     private String navn;
     
-    private int fødselsår;
+    private LocalDate fødselsdag;
     private int alder;
     private char køn;
 
@@ -27,10 +28,11 @@ public class Medlem implements Serializable {
     private boolean restance;
 
     //Constructor
-    public Medlem (String navn, int fødselsår, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
+    public Medlem (String navn, LocalDate fødselsdag, char køn, int indmeldelsesÅr, int indmeldelsesMåned, int indmeldelsesDag, String tlfNummer, String email, String adresse, String typeMedlemskab, String aktivitetsniveauMedlemskab) {
         this.navn = navn;
-        this.fødselsår = fødselsår;
-        alder = (LocalDateTime.now().getYear()) - fødselsår;
+        this.fødselsdag = fødselsdag;
+        LocalDate currentDate = LocalDate.now();
+        alder = Period.between(fødselsdag, currentDate).getYears();
         this.køn = køn;
 
         this.indmeldelsesÅr = indmeldelsesÅr;
@@ -53,12 +55,13 @@ public class Medlem implements Serializable {
         this.navn = navn;
     }
 
-    public void setFødselsår(){
-        this.fødselsår = fødselsår;
+    public void setFødselsdag(){
+        this.fødselsdag = fødselsdag;
     }
     
-    public void setAlder(int alder) {
-        this.alder = alder;
+    public void setAlder(LocalDate fødselsdag) {
+        LocalDate currentDate = LocalDate.now();
+        this.alder = Period.between(fødselsdag, currentDate).getYears();
     }
 
     public void setKøn(char køn) {
@@ -117,8 +120,9 @@ public class Medlem implements Serializable {
     public String getNavn() {
         return navn;
     }
-    public int getFødselsår(){
-        return fødselsår;
+
+    public LocalDate getFødselsdag(){
+        return fødselsdag;
     }
     
     public int getAlder() {

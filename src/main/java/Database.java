@@ -48,7 +48,7 @@ public class Database {
         }
 
         if(newMedlemInfo.getAlder() != 9999) {
-            medlemToBeEdited.setAlder(newMedlemInfo.getAlder());
+            medlemToBeEdited.setAlder(newMedlemInfo.getFødselsdag());
         }
         
         String køn = String.valueOf(newMedlemInfo.getKøn());
