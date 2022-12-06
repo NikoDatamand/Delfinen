@@ -135,14 +135,14 @@ public class UserInterface {
                 ____ TRÆNER-MENU ____
                 Her er dine muligheder
                 
-                1: Se træningstider
+                1: Se hold
                 8: Gå tilbage til hovedmenu
                 9: Afslut program
                 """);
 
         switch (sc.nextInt()) {
             case 1:
-                System.out.println("Her skal man kunne se medlemmets træningstider");
+                showHold();
                 Træner();
                 break;
             case 8:
@@ -274,12 +274,29 @@ public class UserInterface {
             } else if (status.equalsIgnoreCase("nej")) {
                 medlemToBeUpdated.setRestance(false);
             }
+            controller.save();
             System.out.println("Medlemmets restance status er nu opdateret." + ".\n");
         } else {
             System.out.println("Et medlem med det navn kunne ikke findes.");
         }
     }
 
+    //TRÆNER methods
+    private void showHold(){
+        System.out.println("""
+    Vælg et hold:
+    
+    1. Ungdomsholdet
+    2. Seniorholdet
+    8. Gå tilbage   
+    """);
+        int choice = sc.nextInt();
+        if (choice == 1) {
+            controller.showHoldMedlemmer(choice);
+        } else if (choice == 2) {
+            controller.showHoldMedlemmer(choice);
+        }
+    }
 
     //Helping methods
     private char kønToChar(String køn) {
