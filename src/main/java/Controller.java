@@ -4,6 +4,8 @@ import java.io.*;
 public class Controller {
 
     Database medlemsDatabase = new Database();
+    Ungdomshold ungdomshold = new Ungdomshold();
+    Seniorhold seniorhold = new Seniorhold();
     FileHandler fileHandler = new FileHandler();
 
     //Constructor
