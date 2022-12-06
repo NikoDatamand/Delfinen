@@ -174,6 +174,11 @@ public class Medlem implements Serializable {
     }
 
     //Helper methods
+    public String showFødselsdag(){
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return fødselsdag.format(myFormatObj);
+    }
+    
     public String showIndmeldelsesDato() { 
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return indmeldelsesDato.format(myFormatObj);
@@ -205,7 +210,7 @@ public class Medlem implements Serializable {
 
     @Override
     public String toString() {
-        return "Medlemmet: " + navn + ", " + alder + " år, " + kønFormattingHelper() + '\n' +
+        return "Medlemmet: " + navn + ", " + alder + " år, " + "fødselsdag: " + showFødselsdag() + ", " + kønFormattingHelper() + '\n' +
                "Indmeldt den: " + showIndmeldelsesDato() + '\n' +
                 "Kontaktoplysninger: " + tlfNummer + ", " + email + ", " + adresse + '\n' +
                 "Type medlemskab: " + typeMedlemskab + ", " + alderMedlemskab + ", " + aktivitetsniveauMedlemskab + '\n' +
