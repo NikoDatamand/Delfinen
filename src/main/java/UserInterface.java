@@ -137,6 +137,8 @@ public class UserInterface {
                 Her er dine muligheder
                 
                 1: Se hold
+                2: Opret stævne
+                3: Se stævner                
                 8: Gå tilbage til hovedmenu
                 9: Afslut program
                 """);
@@ -344,8 +346,6 @@ public class UserInterface {
     
     1. Ungdomsholdet
     2. Seniorholdet
-    3: Opret stævne
-    4: Se stævner
     8. Gå tilbage
     9. Afslut program
         """);
@@ -358,7 +358,6 @@ public class UserInterface {
     }
 
     private void opretStævne() {
-
     }
 
     //Helping methods
