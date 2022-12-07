@@ -1,70 +1,49 @@
-import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Stævne {
-    private String medlemsNavn;
-    private String stævneNavn;
-    private String stævnePlacering;
-    private int placering;
-    private double tid;
-    private String disciplin;
 
-    // Konstruktør
-    public Stævne (String medlemsNavn, String stævneNavn, String stævnePlacering, int placering, double tid, String disciplin) {
-        this.medlemsNavn = medlemsNavn;
-        this.stævneNavn = stævneNavn;
-        this.stævnePlacering = stævnePlacering;
-        this.placering = placering;
-        this.tid = tid;
-        this.disciplin = disciplin;
-    }
-    // Setters
-    public void setMedlemsNavn (String medlemsNavn) {
-    }
+    private String navn;
+    private String placering;
+    private ArrayList<Resultat> stævneResultater = new ArrayList<>();
 
-    public void setStævneNavn(String stævneNavn) {
-        this.stævneNavn = stævneNavn;
-    }
-
-    public void setStævnePlacering(String stævnePlacering) {
-        this.stævnePlacering = stævnePlacering;
-    }
-
-    public void setPlacering(int placering) {
+    public Stævne (String navn, String placering) {
+        this.navn = navn;
         this.placering = placering;
     }
 
-    public void setTid(double tid) {
-        this.tid = tid;
+    public void createResultat(Medlem medlem, String disciplin, String tid){
+        Resultat stævneResultat = new Resultat(medlem, disciplin, tid);
+        stævneResultater.add(stævneResultat);
     }
 
-    public void setDisciplin(String disciplin) {
-        this.disciplin = disciplin;
-
+    public void showStævneResultater(){
+        int index = 1;
+        for (Resultat resultat : stævneResultater) {
+             System.out.println(index + ".\n" + "Medlemmet: " + resultat.getMedlem().getNavn() + ".\n" +  "Fra: " + holdHelperMethod(resultat.getMedlem()) + ".\n" + "Disciplin: " + resultat.getDisciplin() + ".\n" + "Tid: " + resultat.getTid());
+             System.out.println(" ");
+             index++;
+        }
     }
 
-    // Getters
-    public String getMedlemsNavn() {
-        return medlemsNavn;
+    public int showAmountOfHoldParticipants(){
+        return stævneResultater.size();
     }
 
-    public String getStævneNavn () {
-        return stævneNavn;
+    public String getNavn() {
+        return navn;
     }
 
-    public String getStævnePlacering() {
-        return stævnePlacering;
-    }
-
-    public int getPlacering() {
+    public String getPlacering() {
         return placering;
     }
 
-    public double getTid() {
-        return tid;
+    private String holdHelperMethod(Medlem medlem){
+        String hold;
+        if (medlem.getAlder() < 18) {
+            hold = "ungdomsholdet";
+        } else {
+            hold = "seniorholdet";
+        }
+        return hold;
     }
-
-    public String getDisciplin() {
-        return disciplin;
-    }
-
 }

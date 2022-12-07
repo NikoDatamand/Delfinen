@@ -6,6 +6,8 @@ public class Controller {
     Database medlemsDatabase = new Database();
     Ungdomshold ungdomshold = new Ungdomshold();
     Seniorhold seniorhold = new Seniorhold();
+    Klubresultater klubresultater = new Klubresultater();
+    StævneDatabase stævneDatabase = new StævneDatabase();
     FileHandler fileHandler = new FileHandler();
 
     //Constructor
@@ -74,6 +76,34 @@ public class Controller {
         } else if (choice == 2){
             seniorhold.showHold();
         }
+    }
+
+    public void createKlubResultat(Medlem medlem, String disciplin, String tid){
+        klubresultater.createResultat(medlem, disciplin, tid);
+    }
+
+    public void showKlubresultaterFromDisciplin(String disciplin) {
+        klubresultater.showKlubresultaterFromDisciplin(disciplin);
+    }
+
+    public void createStævne(String stævneNavn, String stævnePlacering){
+        stævneDatabase.createStævne(stævneNavn, stævnePlacering);
+    }
+
+    public void createStævneResultat(Stævne stævne, Medlem medlem, String disciplin, String tid){
+        stævneDatabase.createStævneResultat(stævne, medlem, disciplin, tid);
+    }
+
+    public void showAllStævner(){
+        stævneDatabase.showAllStævner();
+    }
+
+    public Stævne searchForStævne(String stævneNavn){
+        return stævneDatabase.searchForStævne(stævneNavn);
+    }
+
+    public void showStævneResults(String stævneNavn) {
+        stævneDatabase.showStævneResults(stævneNavn);
     }
 
     public void save(){

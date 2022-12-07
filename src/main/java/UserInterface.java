@@ -137,8 +137,12 @@ public class UserInterface {
                 Her er dine muligheder
                 
                 1: Se hold
-                2: Opret stævne
-                3: Se stævner                
+                2: Opret resultat
+                3: Se holdresultater for disciplin
+                4: Opret stævne
+                5: Se stævner
+                6. Opret stævneresultater for holdmedlemmer
+                7. Se holdresultater fra bestemt stævne
                 8: Gå tilbage til hovedmenu
                 9: Afslut program
                 """);
@@ -148,6 +152,29 @@ public class UserInterface {
                 showHold();
                 Træner();
                 break;
+            case 2:
+                createResultat();
+                Træner();
+                break;
+            case 3:
+                showResultatFromDisciplin();
+                Træner();
+                break;
+            case 4:
+                createStævne();
+                Træner();
+                break;
+            case 5:
+                controller.showAllStævner();
+                Træner();
+                break;
+            case 6:
+                createStævneResultat();
+                Træner();
+                break;
+            case 7:
+                searchForSpecificStævne();
+                Træner();
             case 8:
                 Intro ();
                 break;
@@ -357,7 +384,108 @@ public class UserInterface {
         }
     }
 
-    private void opretStævne() {
+    private void createResultat(){
+        sc.nextLine();
+        System.out.println("Hvilket medlem har opnået et svømmeresultat?");
+        ArrayList<Medlem> foundMedlemmer = controller.searchMedlemByName(sc.nextLine());
+
+        if (!foundMedlemmer.isEmpty()) {
+            System.out.println("Tast nummeret på medlemmet du vil indtaste resultatet på: ");
+            int searchNumber = sc.nextInt();
+            sc.nextLine();
+            Medlem medlemToHaveResultat = foundMedlemmer.get(searchNumber - 1);
+
+            System.out.println("Indtast hvilken disciplin der blev gjort resultat i: ");
+            String disciplin= "";
+            boolean isCorrect = false;
+            while (!isCorrect) {
+                disciplin = disciplinChooser(sc.nextLine());
+                if (disciplin.equals(" ")) {
+                    System.out.println("Ugyldig discplin");
+                } else {
+                    isCorrect = true;
+                }
+            }
+            System.out.println("Indtast tiden for resultatet: ");
+            String tid = sc.nextLine();
+
+            controller.createKlubResultat(medlemToHaveResultat, disciplin, tid);
+            System.out.println("Resultat er nu oprettet.");
+        } else {
+            System.out.println("Der findes ingen medlemmer under det navn" + ".\n");
+        }
+    }
+
+    private void showResultatFromDisciplin(){
+        sc.nextLine();
+        System.out.println("Hvilken disciplin vil du se resultaterne fra?");
+        String disciplin= "";
+        boolean isCorrect = false;
+        while (!isCorrect) {
+            disciplin = disciplinChooser(sc.nextLine());
+            if (disciplin.equals(" ")) {
+                System.out.println("Ugyldig discplin");
+            } else {
+                isCorrect = true;
+            }
+        }
+        controller.showKlubresultaterFromDisciplin(disciplin);
+    }
+
+    private void createStævne() {
+        sc.nextLine();
+        System.out.println("Hvad er navnet på stævnet der skal oprettes?");
+        String navn = sc.nextLine();
+        System.out.println("Hvor bliver stævnet afholdt henne?");
+        String placering = sc.nextLine();
+        controller.createStævne(navn, placering);
+        System.out.println("Stævnet er nu oprettet");
+    }
+
+    private void searchForSpecificStævne(){
+        sc.nextLine();
+        System.out.println("Hvad er navnet på stævnet du vil se?");
+        controller.showStævneResults(sc.nextLine());
+        System.out.println(" ");
+    }
+
+    private void createStævneResultat(){
+        sc.nextLine();
+        System.out.println("Hvilket stævne ønsker du at tilføje et resultat til?");
+        Stævne stævneToAddResults = controller.searchForStævne(sc.nextLine());
+
+        if (stævneToAddResults != null) {
+            System.out.println("Hvilket medlem har opnået et svømmeresultat til stævnet?");
+            ArrayList<Medlem> foundMedlemmer = controller.searchMedlemByName(sc.nextLine());
+
+            if (!foundMedlemmer.isEmpty()) {
+                System.out.println("Tast nummeret på medlemmet du vil indtaste resultatet på: ");
+                int searchNumber = sc.nextInt();
+                sc.nextLine();
+                Medlem medlemToHaveResultat = foundMedlemmer.get(searchNumber - 1);
+
+                System.out.println("Indtast hvilken disciplin der blev gjort resultat i: ");
+                String disciplin= "";
+                boolean isCorrect = false;
+                while (!isCorrect) {
+                    disciplin = disciplinChooser(sc.nextLine());
+                    if (disciplin.equals(" ")) {
+                        System.out.println("Ugyldig discplin");
+                    } else {
+                        isCorrect = true;
+                    }
+                }
+                System.out.println("Indtast tiden for resultatet: ");
+                String tid = sc.nextLine();
+
+                controller.createStævneResultat(stævneToAddResults, medlemToHaveResultat, disciplin, tid);
+                System.out.println("Resultat er nu oprettet.");
+            } else {
+                System.out.println("Der findes ingen medlemmer under det navn" + ".\n");
+            }
+        } else {
+            System.out.println("Der findes intet stævne med det navn.");
+        }
     }
 
     //Helping methods
@@ -438,5 +566,19 @@ public class UserInterface {
             readInteger(dataType);
         }
         return 9999;
+    }
+
+    private String disciplinChooser(String disciplinInput) {
+        String disciplin = " ";
+        if (disciplinInput.equalsIgnoreCase("crawl")) {
+                disciplin = "Crawl";
+            } else if (disciplinInput.equalsIgnoreCase("rygcrawl")) {
+                disciplin = "Rygcrawl";
+            } else if (disciplinInput.equalsIgnoreCase("brystsvømning")) {
+                disciplin = "Brystsvømning";
+            } else if (disciplinInput.equalsIgnoreCase("butterfly")) {
+                disciplin = "Butterfly";
+            }
+        return disciplin;
     }
 }
