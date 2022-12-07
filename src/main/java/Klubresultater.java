@@ -31,4 +31,8 @@ public class Klubresultater {
         }
         return hold;
     }
+
+    public ArrayList<Resultat> getKlubresultater(){
+        return klubresultater;
+    }
 }

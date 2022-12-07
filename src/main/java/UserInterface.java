@@ -21,12 +21,12 @@ public class UserInterface {
     private void Intro() {
         System.out.println("""
                 HOVEDMENU
-                
+
                 Hvilken funktion har du i svømmeklubben?
                 1: Formand
                 2: Kasserer
                 3: Træner
-                9: Afslut program            
+                9: Afslut program
                 """);
 
         switch (sc.nextInt()) {
@@ -52,7 +52,7 @@ public class UserInterface {
         System.out.println("""
                 ____ FORMAND-MENU ____
                 Her er dine muligheder
-                                
+
                 1. Opret medlem
                 2. Vis alle medlemmer
                 3. Søg efter medlem
@@ -101,7 +101,7 @@ public class UserInterface {
         System.out.println("""
                 ____ KASSERER-MENU ____
                 Her er dine muligheder
-                
+
                 1: Se forventet kontingentindkomst
                 2: Opdatér medlemmers restance status
                 8: Gå tilbage til hovedmenu
@@ -110,7 +110,8 @@ public class UserInterface {
 
         switch (sc.nextInt()) {
             case 1:
-                System.out.println("Forventet indkomst for " + LocalDateTime.now().getYear() + " : " + controller.showExpectedIncomeAggregated() + " DKK");
+                System.out.println("Forventet indkomst for " + LocalDateTime.now().getYear() + " : "
+                        + controller.showExpectedIncomeAggregated() + " DKK");
                 Kasserer();
                 break;
             case 2:
@@ -131,11 +132,11 @@ public class UserInterface {
         }
     }
 
-    private void Træner () {
+    private void Træner() {
         System.out.println("""
                 ____ TRÆNER-MENU ____
                 Her er dine muligheder
-                
+
                 1: Se hold
                 2: Opret resultat
                 3: Se holdresultater for disciplin
@@ -176,10 +177,10 @@ public class UserInterface {
                 searchForSpecificStævne();
                 Træner();
             case 8:
-                Intro ();
+                Intro();
                 break;
             case 9:
-                System.exit (0);
+                System.exit(0);
                 break;
             default:
                 System.out.println("Der opstod en fejl. Vælg venligt relevant input");
@@ -195,39 +196,39 @@ public class UserInterface {
         System.out.println("Hvad er det fulde navn på medlemmet der skal oprettes?");
         String navn = sc.nextLine();
         boolean shouldContinue = true;
-        while(shouldContinue){
+        while (shouldContinue) {
             System.out.println("Hvad er medlemmets fødselsdag? (ÅÅÅÅ-MM-DD format)");
             String input = sc.nextLine();
-            if(!input.isEmpty()){
-                try{
+            if (!input.isEmpty()) {
+                try {
                     fødselsdag = LocalDate.parse(input);
                     shouldContinue = false;
                     break;
-                } catch (DateTimeParseException dtpe){
+                } catch (DateTimeParseException dtpe) {
                     System.out.println("Ugyldig dato, tast venligst igen.");
                     continue;
                 }
-            }else{
+            } else {
                 System.out.println("Tast venligst en dato i ÅÅÅÅ-MM-DD format.");
                 continue;
-            } 
+            }
         }
         System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
         char køn = kønToChar(sc.nextLine());
         shouldContinue = true;
-        while(shouldContinue){
+        while (shouldContinue) {
             System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
             String input2 = sc.nextLine();
-            if(!input2.isEmpty()){
-                try{
+            if (!input2.isEmpty()) {
+                try {
                     indmeldelsesDato = LocalDate.parse(input2);
                     shouldContinue = false;
                     break;
-                }catch (DateTimeParseException dtpe){
+                } catch (DateTimeParseException dtpe) {
                     System.out.println("Ugyldig dato, tast venligst igen.");
                     continue;
                 }
-            }else{
+            } else {
                 System.out.println("Tast venligst en dato i ÅÅÅÅ-MM-DD format.");
                 continue;
             }
@@ -243,7 +244,8 @@ public class UserInterface {
         System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
         String aktivitetsNiveau = sc.nextLine();
 
-        Medlem nytMedlem = new Medlem(navn, fødselsdag, køn, indmeldelsesDato, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
+        Medlem nytMedlem = new Medlem(navn, fødselsdag, køn, indmeldelsesDato, tlfNummer, email, adresse,
+                medlemskabsType, aktivitetsNiveau);
         controller.addMedlemToDatabase(nytMedlem);
 
         System.out.println("Medlemmet er nu oprettet i databasen");
@@ -267,40 +269,40 @@ public class UserInterface {
 
             System.out.println("Hvad er det fulde navn på medlemmet?");
             String navn = sc.nextLine();
-            
-            while(shouldContinue){
+
+            while (shouldContinue) {
                 System.out.println("Hvad er medlemmets fødselsdag? (ÅÅÅÅ-MM-DD format)");
                 String input = sc.nextLine();
-                if(!input.isEmpty()){
-                    try{
+                if (!input.isEmpty()) {
+                    try {
                         fødselsdag = LocalDate.parse(input);
                         shouldContinue = false;
                         break;
-                    }catch (DateTimeParseException dtpe){
+                    } catch (DateTimeParseException dtpe) {
                         System.out.println("Ugyldig dato, tast venligst igen.");
                         continue;
                     }
-                }else{
+                } else {
                     break;
                 }
             }
             System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
             char køn = kønToChar(sc.nextLine());
-            
+
             shouldContinue = true;
-            while(shouldContinue){
+            while (shouldContinue) {
                 System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
                 String input2 = sc.nextLine();
-                if(!input2.isEmpty()){
-                    try{
+                if (!input2.isEmpty()) {
+                    try {
                         indmeldelsesDato = LocalDate.parse(input2);
                         shouldContinue = false;
                         break;
-                    }catch (DateTimeParseException dtpe){
+                    } catch (DateTimeParseException dtpe) {
                         System.out.println("Ugyldig dato, tast venligst igen.");
                         continue;
                     }
-                }else{
+                } else {
                     break;
                 }
             }
@@ -315,7 +317,8 @@ public class UserInterface {
             System.out.println("Er der tale om en motionist eller konkurrencesvømmer?");
             String aktivitetsNiveau = sc.nextLine();
 
-            Medlem newMedlemInfo = new Medlem(navn, fødselsdag, køn, indmeldelsesDato, tlfNummer, email, adresse, medlemskabsType, aktivitetsNiveau);
+            Medlem newMedlemInfo = new Medlem(navn, fødselsdag, køn, indmeldelsesDato, tlfNummer, email, adresse,
+                    medlemskabsType, aktivitetsNiveau);
             controller.editMedlem(medlemToBeEdited, newMedlemInfo);
 
             System.out.println("Medlemmet er nu opdateret i databasen");
@@ -349,7 +352,7 @@ public class UserInterface {
         if (!foundMedlemmer.isEmpty()) {
             System.out.println("Tast nummeret på medlemmet du vil opdatere: ");
             int searchNumber = sc.nextInt();
-            Medlem medlemToBeUpdated= foundMedlemmer.get(searchNumber - 1);
+            Medlem medlemToBeUpdated = foundMedlemmer.get(searchNumber - 1);
             sc.nextLine();
             System.out.println(" ");
             System.out.println("Er medlemmet i restance? (ja/nej)");
@@ -359,23 +362,23 @@ public class UserInterface {
             } else if (status.equalsIgnoreCase("nej")) {
                 medlemToBeUpdated.setRestance(false);
             }
-            controller.save();
+            controller.saveMedlemmer();
             System.out.println("Medlemmets restance status er nu opdateret." + ".\n");
         } else {
             System.out.println("Et medlem med det navn kunne ikke findes.");
         }
     }
 
-    //TRÆNER methods
-    private void showHold(){
+    // TRÆNER methods
+    private void showHold() {
         System.out.println("""
-    Vælg et hold:
-    
-    1. Ungdomsholdet
-    2. Seniorholdet
-    8. Gå tilbage
-    9. Afslut program
-        """);
+                Vælg et hold:
+
+                1. Ungdomsholdet
+                2. Seniorholdet
+                8. Gå tilbage
+                9. Afslut program
+                    """);
         int choice = sc.nextInt();
         if (choice == 1) {
             controller.showHoldMedlemmer(choice);
@@ -384,7 +387,7 @@ public class UserInterface {
         }
     }
 
-    private void createResultat(){
+    private void createResultat() {
         sc.nextLine();
         System.out.println("Hvilket medlem har opnået et svømmeresultat?");
         ArrayList<Medlem> foundMedlemmer = controller.searchMedlemByName(sc.nextLine());
@@ -396,7 +399,7 @@ public class UserInterface {
             Medlem medlemToHaveResultat = foundMedlemmer.get(searchNumber - 1);
 
             System.out.println("Indtast hvilken disciplin der blev gjort resultat i: ");
-            String disciplin= "";
+            String disciplin = "";
             boolean isCorrect = false;
             while (!isCorrect) {
                 disciplin = disciplinChooser(sc.nextLine());
@@ -416,10 +419,10 @@ public class UserInterface {
         }
     }
 
-    private void showResultatFromDisciplin(){
+    private void showResultatFromDisciplin() {
         sc.nextLine();
         System.out.println("Hvilken disciplin vil du se resultaterne fra?");
-        String disciplin= "";
+        String disciplin = "";
         boolean isCorrect = false;
         while (!isCorrect) {
             disciplin = disciplinChooser(sc.nextLine());
@@ -442,14 +445,14 @@ public class UserInterface {
         System.out.println("Stævnet er nu oprettet");
     }
 
-    private void searchForSpecificStævne(){
+    private void searchForSpecificStævne() {
         sc.nextLine();
         System.out.println("Hvad er navnet på stævnet du vil se?");
         controller.showStævneResults(sc.nextLine());
         System.out.println(" ");
     }
 
-    private void createStævneResultat(){
+    private void createStævneResultat() {
         sc.nextLine();
         System.out.println("Hvilket stævne ønsker du at tilføje et resultat til?");
         Stævne stævneToAddResults = controller.searchForStævne(sc.nextLine());
@@ -465,7 +468,7 @@ public class UserInterface {
                 Medlem medlemToHaveResultat = foundMedlemmer.get(searchNumber - 1);
 
                 System.out.println("Indtast hvilken disciplin der blev gjort resultat i: ");
-                String disciplin= "";
+                String disciplin = "";
                 boolean isCorrect = false;
                 while (!isCorrect) {
                     disciplin = disciplinChooser(sc.nextLine());
@@ -488,7 +491,7 @@ public class UserInterface {
         }
     }
 
-    //Helping methods
+    // Helping methods
     private char kønToChar(String køn) {
         char kønChar;
         if (køn.equalsIgnoreCase("mand")) {
@@ -571,14 +574,14 @@ public class UserInterface {
     private String disciplinChooser(String disciplinInput) {
         String disciplin = " ";
         if (disciplinInput.equalsIgnoreCase("crawl")) {
-                disciplin = "Crawl";
-            } else if (disciplinInput.equalsIgnoreCase("rygcrawl")) {
-                disciplin = "Rygcrawl";
-            } else if (disciplinInput.equalsIgnoreCase("brystsvømning")) {
-                disciplin = "Brystsvømning";
-            } else if (disciplinInput.equalsIgnoreCase("butterfly")) {
-                disciplin = "Butterfly";
-            }
+            disciplin = "Crawl";
+        } else if (disciplinInput.equalsIgnoreCase("rygcrawl")) {
+            disciplin = "Rygcrawl";
+        } else if (disciplinInput.equalsIgnoreCase("brystsvømning")) {
+            disciplin = "Brystsvømning";
+        } else if (disciplinInput.equalsIgnoreCase("butterfly")) {
+            disciplin = "Butterfly";
+        }
         return disciplin;
     }
 }

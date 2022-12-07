@@ -44,5 +44,7 @@ public class StævneDatabase {
       }
       return stævneToReturn;
   }
-
+    public ArrayList<Stævne> getStævneDatabase(){
+        return stævner;
+    }
 }
