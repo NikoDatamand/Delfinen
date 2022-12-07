@@ -49,7 +49,9 @@ public class Database {
         }
 
         if(newMedlemInfo.getAlder() != 9999) {
-            medlemToBeEdited.setAlder(newMedlemInfo.getFødselsdag());
+            if(newMedlemInfo.getFødselsdag() != null){
+                medlemToBeEdited.setAlder(newMedlemInfo.getFødselsdag());
+            }
         }
         
         String køn = String.valueOf(newMedlemInfo.getKøn());
@@ -58,20 +60,16 @@ public class Database {
             medlemToBeEdited.setKøn(kønChar);
         }
 
+        LocalDate fødselsdag = newMedlemInfo.getFødselsdag();
+        if(fødselsdag != null){
+            medlemToBeEdited.setFødselsdag(fødselsdag);
+        }
+        
         LocalDate indmeldelsesDato = newMedlemInfo.getIndmeldelsesDato();
-            medlemToBeEdited.setIndmeldelsesDato(newMedlemInfo.getIndmeldelsesDato());
-        /*if(newMedlemInfo.getIndmeldelsesÅr() != 9999){
-            medlemToBeEdited.setIndmeldelsesÅr(newMedlemInfo.getIndmeldelsesÅr());
+        if(indmeldelsesDato != null){
+            medlemToBeEdited.setIndmeldelsesDato(indmeldelsesDato);
         }
-
-        if(newMedlemInfo.getIndmeldelsesMåned() != 9999){
-            medlemToBeEdited.setIndmeldelsesMåned(newMedlemInfo.getIndmeldelsesMåned());
-        }
-
-        if(newMedlemInfo.getIndmeldelsesDag() != 9999){
-            medlemToBeEdited.setIndmeldelsesDag(newMedlemInfo.getIndmeldelsesDag());
-        }*/
-
+          
         if(!newMedlemInfo.getTlfNummer().isEmpty()){
             medlemToBeEdited.setTlfNummer(newMedlemInfo.getTlfNummer());
         }

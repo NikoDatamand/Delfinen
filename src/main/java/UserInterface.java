@@ -2,6 +2,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.*;
+import java.time.format.DateTimeParseException;
 
 public class UserInterface {
     Scanner sc = new Scanner(System.in);
@@ -159,17 +160,49 @@ public class UserInterface {
     }
 
     private void createMedlem() {
+        LocalDate fødselsdag = null;
+        LocalDate indmeldelsesDato = null;
         sc.nextLine();
         System.out.println("Hvad er det fulde navn på medlemmet der skal oprettes?");
         String navn = sc.nextLine();
-        System.out.println("Hvad er medlemmets fødselsdag? (ÅÅÅÅ-MM-DD format)");
-        String input = sc.nextLine();
-        LocalDate fødselsdag = LocalDate.parse(input);
+        boolean shouldContinue = true;
+        while(shouldContinue){
+            System.out.println("Hvad er medlemmets fødselsdag? (ÅÅÅÅ-MM-DD format)");
+            String input = sc.nextLine();
+            if(!input.isEmpty()){
+                try{
+                    fødselsdag = LocalDate.parse(input);
+                    shouldContinue = false;
+                    break;
+                } catch (DateTimeParseException dtpe){
+                    System.out.println("Ugyldig dato, tast venligst igen.");
+                    continue;
+                }
+            }else{
+                System.out.println("Tast venligst en dato i ÅÅÅÅ-MM-DD format.");
+                continue;
+            } 
+        }
         System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
         char køn = kønToChar(sc.nextLine());
-        System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
-        String input2 = sc.nextLine();
-        LocalDate indmeldelsesDato = LocalDate.parse(input2);
+        shouldContinue = true;
+        while(shouldContinue){
+            System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
+            String input2 = sc.nextLine();
+            if(!input2.isEmpty()){
+                try{
+                    indmeldelsesDato = LocalDate.parse(input2);
+                    shouldContinue = false;
+                    break;
+                }catch (DateTimeParseException dtpe){
+                    System.out.println("Ugyldig dato, tast venligst igen.");
+                    continue;
+                }
+            }else{
+                System.out.println("Tast venligst en dato i ÅÅÅÅ-MM-DD format.");
+                continue;
+            }
+        }
         System.out.println("Hvad er medlemmets telefonnummer?");
         String tlfNummer = sc.nextLine();
         System.out.println("Hvad er medlemmets email?");
@@ -188,6 +221,9 @@ public class UserInterface {
     }
 
     private void editMedlem() {
+        LocalDate fødselsdag = null;
+        LocalDate indmeldelsesDato = null;
+        boolean shouldContinue = true;
         sc.nextLine();
         System.out.println("Hvad er navnet på medlemmet der skal opdateres");
         ArrayList<Medlem> foundMedlemmer = controller.searchMedlemByName(sc.nextLine());
@@ -202,14 +238,45 @@ public class UserInterface {
 
             System.out.println("Hvad er det fulde navn på medlemmet?");
             String navn = sc.nextLine();
-            System.out.println("Hvad er medlemmets fødselsdag? (ÅÅÅÅ-MM-DD format)");
-            String input = sc.nextLine();
-            LocalDate fødselsdag = LocalDate.parse(input);
+            
+            while(shouldContinue){
+                System.out.println("Hvad er medlemmets fødselsdag? (ÅÅÅÅ-MM-DD format)");
+                String input = sc.nextLine();
+                if(!input.isEmpty()){
+                    try{
+                        fødselsdag = LocalDate.parse(input);
+                        shouldContinue = false;
+                        break;
+                    }catch (DateTimeParseException dtpe){
+                        System.out.println("Ugyldig dato, tast venligst igen.");
+                        continue;
+                    }
+                }else{
+                    System.out.println("");
+                    continue;
+                }
+            }
             System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
             char køn = kønToChar(sc.nextLine());
-            System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
-            String input2 = sc.nextLine();
-            LocalDate indmeldelsesDato = LocalDate.parse(input2);
+            
+            shouldContinue = true;
+            while(shouldContinue){
+                System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
+                String input2 = sc.nextLine();
+                if(!input2.isEmpty()){
+                    try{
+                        indmeldelsesDato = LocalDate.parse(input2);
+                        shouldContinue = false;
+                        break;
+                    }catch (DateTimeParseException dtpe){
+                        System.out.println("Ugyldig dato, tast venligst igen.");
+                        continue;
+                    }
+                }else{
+                    System.out.println("");
+                    continue;
+                }
+            }
             System.out.println("Hvad er medlemmets telefonnummer?");
             String tlfNummer = sc.nextLine();
             System.out.println("Hvad er medlemmets email?");

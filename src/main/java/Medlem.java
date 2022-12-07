@@ -29,10 +29,13 @@ public class Medlem implements Serializable {
         this.navn = navn;
         this.fødselsdag = fødselsdag;
         LocalDate currentDate = LocalDate.now();
-        alder = Period.between(fødselsdag, currentDate).getYears();
+        if(fødselsdag != null){
+            alder = Period.between(fødselsdag, currentDate).getYears();
+        }
         this.køn = køn;
+        
         this.indmeldelsesDato = indmeldelsesDato;
-
+        
         this.tlfNummer = tlfNummer;
         this.email = email;
         this.adresse = adresse;
@@ -55,7 +58,9 @@ public class Medlem implements Serializable {
     
     public void setAlder(LocalDate fødselsdag) {
         LocalDate currentDate = LocalDate.now();
-        this.alder = Period.between(fødselsdag, currentDate).getYears();
+        if(fødselsdag != null){
+            this.alder = Period.between(fødselsdag, currentDate).getYears();
+        }
     }
 
     public void setKøn(char køn) {
