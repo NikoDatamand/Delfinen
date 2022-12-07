@@ -47,7 +47,6 @@ public class Medlem implements Serializable {
     }
 
     //Setters
-
     public void setNavn(String navn) {
         this.navn = navn;
     }

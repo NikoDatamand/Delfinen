@@ -346,15 +346,21 @@ public class UserInterface {
     
     1. Ungdomsholdet
     2. Seniorholdet
-    3: Se stævner
-    8. Gå tilbage   
-    """);
+    3: Opret stævne
+    4: Se stævner
+    8. Gå tilbage
+    9. Afslut program
+        """);
         int choice = sc.nextInt();
         if (choice == 1) {
             controller.showHoldMedlemmer(choice);
         } else if (choice == 2) {
             controller.showHoldMedlemmer(choice);
         }
+    }
+
+    private void opretStævne() {
+
     }
 
     //Helping methods
