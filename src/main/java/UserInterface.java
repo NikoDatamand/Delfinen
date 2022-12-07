@@ -252,8 +252,7 @@ public class UserInterface {
                         continue;
                     }
                 }else{
-                    System.out.println("");
-                    continue;
+                    break;
                 }
             }
             System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
@@ -273,8 +272,7 @@ public class UserInterface {
                         continue;
                     }
                 }else{
-                    System.out.println("");
-                    continue;
+                    break;
                 }
             }
             System.out.println("Hvad er medlemmets telefonnummer?");
