@@ -279,6 +279,7 @@ public class UserInterface {
     
     1. Ungdomsholdet
     2. Seniorholdet
+    3: Se stævner
     8. Gå tilbage   
     """);
         int choice = sc.nextInt();
