@@ -1,4 +1,6 @@
-public class Resultat {
+import java.io.Serializable;
+
+public class Resultat implements Serializable{
 
     private Medlem medlem;
     private String disciplin;
