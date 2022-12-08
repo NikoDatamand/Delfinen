@@ -138,8 +138,8 @@ public class UserInterface {
                 Her er dine muligheder
 
                 1: Se hold
-                2: Opret resultat
-                3: Se holdresultater for disciplin
+                2: Opret internt resultat
+                3: Se interne holdresultater for disciplin
                 4: Opret stævne
                 5: Se stævner
                 6. Opret stævneresultater for holdmedlemmer

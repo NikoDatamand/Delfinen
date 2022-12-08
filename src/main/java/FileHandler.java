@@ -13,7 +13,6 @@ public class FileHandler{
         File file = new File("medlemmer.txt");
         File file2 = new File("klubresultater.txt");
         File file3 = new File("stævnedatabase.txt");
-        File file4 = new File("stævneresultater.txt");
         
         try{
             if (!file.exists()){
@@ -34,14 +33,6 @@ public class FileHandler{
         try{
             if (!file3.exists()){
                 file3.createNewFile();
-            }
-        }catch (IOException e){
-            System.out.println("");
-        }
-        
-        try{
-            if (!file4.exists()){
-                file4.createNewFile();
             }
         }catch (IOException e){
             System.out.println("");
