@@ -14,7 +14,9 @@ public class Controller {
     public Controller() {
         try {
             fileHandler.attemptCreateFile();
-            fileHandler.readFromFile(medlemsDatabase.getMedlemsDatabase());
+            fileHandler.readFromMedlemmer(medlemsDatabase.getMedlemsDatabase());
+            fileHandler.readFromKlubresultater(klubresultater.getKlubresultater());
+            fileHandler.readFromStævneDatabase(stævneDatabase.getStævneDatabase());
             syncronizeHold(medlemsDatabase.getMedlemsDatabase());
         } catch (Exception e){
         }
@@ -23,7 +25,7 @@ public class Controller {
     public void addMedlemToDatabase(Medlem medlem){
        medlemsDatabase.addMedlemToDatabase(medlem);
        addMedlemToHold(medlem);
-       save();
+       saveMedlemmer();
     }
 
     public void showMedlemmer() {
@@ -38,12 +40,12 @@ public class Controller {
 
     public void editMedlem (Medlem medlemToBeEdited, Medlem newMedlemInfo) {
         medlemsDatabase.editMedlem(medlemToBeEdited, newMedlemInfo);
-        save();
+        saveMedlemmer();
     }
 
     public void deleteMedlem (String medlemToBeDelted) {
         medlemsDatabase.deleteMedlem(medlemToBeDelted);
-        save();
+        saveMedlemmer();
     }
 
     public int showExpectedIncomeAggregated(){
@@ -80,6 +82,7 @@ public class Controller {
 
     public void createKlubResultat(Medlem medlem, String disciplin, String tid){
         klubresultater.createResultat(medlem, disciplin, tid);
+        saveKlubresultater();
     }
 
     public void showKlubresultaterFromDisciplin(String disciplin) {
@@ -88,10 +91,12 @@ public class Controller {
 
     public void createStævne(String stævneNavn, String stævnePlacering){
         stævneDatabase.createStævne(stævneNavn, stævnePlacering);
+        saveStævneDatabase();
     }
 
     public void createStævneResultat(Stævne stævne, Medlem medlem, String disciplin, String tid){
         stævneDatabase.createStævneResultat(stævne, medlem, disciplin, tid);
+        saveStævneDatabase();
     }
 
     public void showAllStævner(){
@@ -106,9 +111,27 @@ public class Controller {
         stævneDatabase.showStævneResults(stævneNavn);
     }
 
-    public void save(){
+    // save metoder
+    
+    public void saveMedlemmer(){
         try {
-            fileHandler.writeToFile(medlemsDatabase.getMedlemsDatabase());
+            fileHandler.writeToMedlemmer(medlemsDatabase.getMedlemsDatabase());
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }
+
+    public void saveKlubresultater(){
+        try {
+            fileHandler.writeToKlubresultater(klubresultater.getKlubresultater());
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }
+
+    public void saveStævneDatabase(){
+        try {
+            fileHandler.writeToStævneDatabase(stævneDatabase.getStævneDatabase());
         } catch (Exception e) {
             System.out.println("Error");
         }

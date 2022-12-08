@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Stævne {
+public class Stævne implements Serializable{
 
     private String navn;
     private String placering;

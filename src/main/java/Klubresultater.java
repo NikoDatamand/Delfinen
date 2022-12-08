@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Klubresultater {
+public class Klubresultater implements Serializable{
     private ArrayList<Resultat> klubresultater = new ArrayList<>();
 
     public Klubresultater(){
@@ -30,5 +31,9 @@ public class Klubresultater {
             hold = "seniorholdet";
         }
         return hold;
+    }
+
+    public ArrayList<Resultat> getKlubresultater(){
+        return klubresultater;
     }
 }

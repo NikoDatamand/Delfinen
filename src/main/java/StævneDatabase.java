@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class StævneDatabase {
+public class StævneDatabase implements Serializable{
 
   private ArrayList<Stævne> stævner = new ArrayList<>();
 
@@ -44,5 +45,7 @@ public class StævneDatabase {
       }
       return stævneToReturn;
   }
-
+    public ArrayList<Stævne> getStævneDatabase(){
+        return stævner;
+    }
 }
