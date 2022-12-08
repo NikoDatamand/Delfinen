@@ -137,8 +137,8 @@ public class UserInterface {
                 Her er dine muligheder
                 
                 1: Se hold
-                2: Opret resultat
-                3: Se holdresultater for disciplin
+                2: Opret internt resultat
+                3: Se interne holdresultater for disciplin
                 4: Opret stævne
                 5: Se stævner
                 6. Opret stævneresultater for holdmedlemmer
@@ -210,7 +210,7 @@ public class UserInterface {
             }else{
                 System.out.println("Tast venligst en dato i ÅÅÅÅ-MM-DD format.");
                 continue;
-            } 
+            }
         }
         System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
         char køn = kønToChar(sc.nextLine());
@@ -267,7 +267,7 @@ public class UserInterface {
 
             System.out.println("Hvad er det fulde navn på medlemmet?");
             String navn = sc.nextLine();
-            
+
             while(shouldContinue){
                 System.out.println("Hvad er medlemmets fødselsdag? (ÅÅÅÅ-MM-DD format)");
                 String input = sc.nextLine();
@@ -286,7 +286,7 @@ public class UserInterface {
             }
             System.out.println("Hvad er medlemmets køn (mand/kvinde/andet)?");
             char køn = kønToChar(sc.nextLine());
-            
+
             shouldContinue = true;
             while(shouldContinue){
                 System.out.println("Hvilken dato er medlemmet indmeldt? (ÅÅÅÅ-MM-DD format)");
@@ -571,14 +571,14 @@ public class UserInterface {
     private String disciplinChooser(String disciplinInput) {
         String disciplin = " ";
         if (disciplinInput.equalsIgnoreCase("crawl")) {
-                disciplin = "Crawl";
-            } else if (disciplinInput.equalsIgnoreCase("rygcrawl")) {
-                disciplin = "Rygcrawl";
-            } else if (disciplinInput.equalsIgnoreCase("brystsvømning")) {
-                disciplin = "Brystsvømning";
-            } else if (disciplinInput.equalsIgnoreCase("butterfly")) {
-                disciplin = "Butterfly";
-            }
+            disciplin = "Crawl";
+        } else if (disciplinInput.equalsIgnoreCase("rygcrawl")) {
+            disciplin = "Rygcrawl";
+        } else if (disciplinInput.equalsIgnoreCase("brystsvømning")) {
+            disciplin = "Brystsvømning";
+        } else if (disciplinInput.equalsIgnoreCase("butterfly")) {
+            disciplin = "Butterfly";
+        }
         return disciplin;
     }
 }
